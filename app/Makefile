@@ -37,10 +37,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = PacketAnalyser1.0.0
-DISTDIR = /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/.tmp/PacketAnalyser1.0.0
+DISTDIR = /Users/prinz/Workspace/qt/Examples/packet-analyser/app/.tmp/PacketAnalyser1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.12 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/prinz/Qt/5.13.0/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/prinz/Qt/5.13.0/clang_64/lib -L/Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/../lib/ -lui.1.0.0 -lengine.1.0.0 -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL   
+LIBS          = $(SUBLIBS) -F/Users/prinz/Qt/5.13.0/clang_64/lib -L/Users/prinz/Workspace/qt/Examples/packet-analyser/app/../lib/ -lui.1.0.0 -lengine.1.0.0 -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL   
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -241,7 +241,7 @@ EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_ACTIVE_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(ARCHS))
 EXPORT_ARCH_ARGS = $(foreach arch, $(if $(EXPORT_ACTIVE_ARCHS), $(EXPORT_ACTIVE_ARCHS), $(EXPORT_VALID_ARCHS)), -arch $(arch))
-EXPORT__PRO_FILE_ = /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro
+EXPORT__PRO_FILE_ = /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro
 
 
 include /Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/mac/sdk.mk

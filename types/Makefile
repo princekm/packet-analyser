@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = types1.0.0
-DISTDIR = /Users/prinz/Workspace/qt/Examples/PacketAnalyser/generated/obj/types1.0.0
+DISTDIR = /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/obj/types1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.12 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/prinz/Qt/5.13.0/clang_64/lib -single_module -dynamiclib -compatibility_version	1.0 -current_version	1.0.0 -install_name	libtypes.1.dylib
 LIBS          = $(SUBLIBS) -F/Users/prinz/Qt/5.13.0/clang_64/lib -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL   
@@ -247,7 +247,7 @@ TARGET2       = libtypes.1.0.dylib
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_ACTIVE_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(ARCHS))
 EXPORT_ARCH_ARGS = $(foreach arch, $(if $(EXPORT_ACTIVE_ARCHS), $(EXPORT_ACTIVE_ARCHS), $(EXPORT_VALID_ARCHS)), -arch $(arch))
-EXPORT__PRO_FILE_ = /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro
+EXPORT__PRO_FILE_ = /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro
 
 
 first: all

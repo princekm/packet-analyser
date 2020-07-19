@@ -12,7 +12,7 @@ Worker::Worker(QObject *parent) : QObject(parent),deviceHandle(nullptr)
 
 void Worker::startCaptureLoop(u_char *useless, const pcap_pkthdr *pkthdr, const u_char *packet)
 {
-    qDebug()<<"Captured";
+   // qDebug()<<"Captured";
 }
 
 Worker::~Worker()
@@ -164,7 +164,7 @@ void Worker::slotCapture()
 {
     struct pcap_pkthdr* pkthdr;
     const u_char* packet;
-    qDebug()<<"Capturing";
+  //  qDebug()<<"Capturing";
     if(deviceHandle){
         int result=pcap_next_ex(deviceHandle,&pkthdr,&packet);
         if(result!=0)

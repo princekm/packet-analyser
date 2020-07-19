@@ -33,6 +33,7 @@ private:
 signals:
     void sigStartCapture();
     void sigStopCapture();
+    void sigInspectPacket(QString packetName);
 private slots:
     void slotSetInterfaceName(QString name);
     void slotSetPacketCount();
@@ -40,6 +41,7 @@ private slots:
     void slotStartStop();
     void slotClearTable();
     void slotClearInfo();
+    void slotRowClicked(int);
 };
 
 #endif // CAPTUREWIDGET_H

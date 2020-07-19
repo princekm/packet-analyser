@@ -41,19 +41,25 @@ private:
     QPushButton *captureButton;
     QHBoxLayout *buttonLayout;
     QVBoxLayout *mainLayout;
-
+    QTreeWidgetItem *rootItem;
     void init() override;
     void setUpConnections() override;
     void applyStyle() override;
     void initActions();
     void populateTree();
     bool clearFolder(const QString &folder);
+    QString getSelectedItemType(QTreeWidgetItem *item);
+    QString getFullName(QTreeWidgetItem *widgetItem);
     QTreeWidgetItem* createFileEntry(QTreeWidgetItem *parentItem,QFileInfo fileInfo);
     QTreeWidgetItem* createFolderEntry(QTreeWidgetItem *parentItem,QFileInfo fileInfo,int count);
 
 signals:
     void sigSnackBar(QString,QColor color);
     void sigEditPacket(QTreeWidgetItem *item,int column);
+    void sigAddCapturePacket(QString fileName);
+    void sigFileAdded(QString name);
+    void sigFileDeleted(QString name);
+
     void sigCapture();
 
 private slots:
@@ -66,6 +72,7 @@ private slots:
     void slotEnableButtons();
     void slotEditPacket(QTreeWidgetItem *item,int column);
     void slotCapture();
+    void slotUpdateFileSize(int size);
 
 
 

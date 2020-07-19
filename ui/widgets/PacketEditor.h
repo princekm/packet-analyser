@@ -31,12 +31,17 @@ private:
     QAction *addTypeAction;
     QAction *addArrayAction;
     QAction *deleteAction;
+    QString fileContent;
+    QString indentation;
 
     ObjectTypeDialog *dataTypeDialog;
     ObjectTypeDialog *arrayDialog;
     ObjectTypeDialog *objectDialog;
     QHBoxLayout *buttonLayout;
     QVBoxLayout *mainLayout;
+
+    QTreeWidgetItem* isArrayElement(QTreeWidgetItem *item);
+    QString  saveToFile(QTreeWidgetItem *item);
     void init();
     void setupConnections();
     void applyStyle();
@@ -45,11 +50,12 @@ private:
     void initActions();
     void recursiveDelete(QTreeWidgetItem *item);
     void updateDelete(QTreeWidgetItem *item,int size);
-    QTreeWidgetItem* isArrayElement(QTreeWidgetItem *item);
     void updateArrayChildren(QTreeWidgetItem *item);
-    QString  saveToFile(QTreeWidgetItem *item);
+    void removeAllChildren(QTreeWidgetItem *item);
+
 signals:
     void sigSnackBar(QString string,QColor color);
+    void  sigUpdateFileSize(int size);
 private slots:
     void slotSave();
 

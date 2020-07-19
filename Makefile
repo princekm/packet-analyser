@@ -30,7 +30,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = PacketAnalyser1.0.0
-DISTDIR = /Users/prinz/Workspace/qt/Examples/PacketAnalyser/.tmp/PacketAnalyser1.0.0
+DISTDIR = /Users/prinz/Workspace/qt/Examples/packet-analyser/.tmp/PacketAnalyser1.0.0
 SUBTARGETS    =  \
 		sub-types \
 		sub-engine \
@@ -42,180 +42,180 @@ SUBTARGETS    =  \
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_ACTIVE_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(ARCHS))
 EXPORT_ARCH_ARGS = $(foreach arch, $(if $(EXPORT_ACTIVE_ARCHS), $(EXPORT_ACTIVE_ARCHS), $(EXPORT_VALID_ARCHS)), -arch $(arch))
-EXPORT__PRO_FILE_ = /Users/prinz/Workspace/qt/Examples/PacketAnalyser/PacketAnalyser.pro
+EXPORT__PRO_FILE_ = /Users/prinz/Workspace/qt/Examples/packet-analyser/PacketAnalyser.pro
 
 sub-types-qmake_all:  FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
+	cd types/ && $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
 	cd types/ && $(MAKE) -f Makefile qmake_all
 sub-types: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile
 sub-types-make_first-ordered: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
 sub-types-make_first: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
 sub-types-all-ordered: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
 sub-types-all: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
 sub-types-clean-ordered: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
 sub-types-clean: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
 sub-types-distclean-ordered: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
 sub-types-distclean: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
 sub-types-install_subtargets-ordered: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
 sub-types-install_subtargets: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
 sub-types-uninstall_subtargets-ordered: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
 sub-types-uninstall_subtargets: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
 sub-engine-qmake_all: sub-types-qmake_all FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
+	cd engine/ && $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
 	cd engine/ && $(MAKE) -f Makefile qmake_all
 sub-engine: FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile
 sub-engine-make_first-ordered: sub-types-make_first-ordered  FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
 sub-engine-make_first: FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
 sub-engine-all-ordered: sub-types-all-ordered  FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
 sub-engine-all: FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
 sub-engine-clean-ordered: sub-types-clean-ordered  FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
 sub-engine-clean: FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
 sub-engine-distclean-ordered: sub-types-distclean-ordered  FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
 sub-engine-distclean: FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
 sub-engine-install_subtargets-ordered: sub-types-install_subtargets-ordered  FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
 sub-engine-install_subtargets: FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
 sub-engine-uninstall_subtargets-ordered: sub-types-uninstall_subtargets-ordered  FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
 sub-engine-uninstall_subtargets: FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
 sub-ui-qmake_all: sub-engine-qmake_all FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
+	cd ui/ && $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
 	cd ui/ && $(MAKE) -f Makefile qmake_all
 sub-ui: FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile
 sub-ui-make_first-ordered: sub-engine-make_first-ordered  FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
 sub-ui-make_first: FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
 sub-ui-all-ordered: sub-engine-all-ordered  FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
 sub-ui-all: FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
 sub-ui-clean-ordered: sub-engine-clean-ordered  FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
 sub-ui-clean: FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
 sub-ui-distclean-ordered: sub-engine-distclean-ordered  FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
 sub-ui-distclean: FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
 sub-ui-install_subtargets-ordered: sub-engine-install_subtargets-ordered  FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
 sub-ui-install_subtargets: FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
 sub-ui-uninstall_subtargets-ordered: sub-engine-uninstall_subtargets-ordered  FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
 sub-ui-uninstall_subtargets: FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
 sub-app-qmake_all: sub-ui-qmake_all FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
+	cd app/ && $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
 	cd app/ && $(MAKE) -f Makefile qmake_all
 sub-app: FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile
 sub-app-make_first-ordered: sub-ui-make_first-ordered  FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
 sub-app-make_first: FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
 sub-app-all-ordered: sub-ui-all-ordered  FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
 sub-app-all: FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
 sub-app-clean-ordered: sub-ui-clean-ordered  FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
 sub-app-clean: FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
 sub-app-distclean-ordered: sub-ui-distclean-ordered  FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
 sub-app-distclean: FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
 sub-app-install_subtargets-ordered: sub-ui-install_subtargets-ordered  FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
 sub-app-install_subtargets: FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
 sub-app-uninstall_subtargets-ordered: sub-ui-uninstall_subtargets-ordered  FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
 sub-app-uninstall_subtargets: FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
 
 Makefile: PacketAnalyser.pro ../../../../Qt/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf ../../../../Qt/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.13.0/clang_64/mkspecs/qdevice.pri \
@@ -561,17 +561,17 @@ distdir: sub-types-distdir sub-engine-distdir sub-ui-distdir sub-app-distdir FOR
 
 sub-types-distdir: FORCE
 	@test -d types/ || mkdir -p types/
-	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/types
+	cd types/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/types/types.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/types
 
 sub-engine-distdir: FORCE
 	@test -d engine/ || mkdir -p engine/
-	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/engine
+	cd engine/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/engine/engine.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/engine
 
 sub-ui-distdir: FORCE
 	@test -d ui/ || mkdir -p ui/
-	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/ui
+	cd ui/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/ui/ui.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/ui
 
 sub-app-distdir: FORCE
 	@test -d app/ || mkdir -p app/
-	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/PacketAnalyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/app
+	cd app/ && ( test -e Makefile || $(QMAKE) -o Makefile /Users/prinz/Workspace/qt/Examples/packet-analyser/app/app.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/app
 

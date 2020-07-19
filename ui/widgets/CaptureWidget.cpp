@@ -1,5 +1,6 @@
 #include "CaptureWidget.h"
 #include <QDebug>
+#include <QHeaderView>
 CaptureWidget::CaptureWidget(QWidget *parent):Widget(parent)
 {
     init();
@@ -43,6 +44,7 @@ void CaptureWidget::setUpConnections()
 {
     connect(startStopButton,SIGNAL(clicked()),this,SLOT(slotStartStop()));
     connect(clearButton,SIGNAL(clicked()),this,SLOT(slotClearTable()));
+    connect(table->verticalHeader(), SIGNAL(sectionClicked(int)),this,SLOT(slotRowClicked(int)) );
 }
 
 void CaptureWidget::applyStyle()
@@ -63,7 +65,7 @@ void CaptureWidget::slotSetPacketCount()
 
 void CaptureWidget::slotDisplayCaptured(const pcap_pkthdr *pkthdr, const unsigned char *packet)
 {
-    qDebug()<<"captured";
+   // qDebug()<<"captured";
     table->insertRow(0);
     auto model = table->model();
     model->setData(model->index(0,4),QString::number(pkthdr->len));
@@ -103,4 +105,10 @@ void CaptureWidget::slotClearInfo()
 {
     totalLabel->clear();
     deviceLabel->clear();
+}
+
+void CaptureWidget::slotRowClicked(int row)
+{
+    qDebug()<<row;
+    emit sigInspectPacket("");
 }

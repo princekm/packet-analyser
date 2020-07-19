@@ -40,6 +40,8 @@ void MainScreen::init()
     explorerWidget = new ExplorerWidget(worker);
     captureWidget = new CaptureWidget();
     packetEditorWidget = new PacketEditor();
+    inspectorWidget = new InspectorWidget;
+
     tabWidget = new QTabWidget();
     mainLayout = new QVBoxLayout(this);
     menuList << "Settings" <<"Packets"<<"Editor"<<"Captures"<<"Inspect";
@@ -72,9 +74,18 @@ void MainScreen::setUpConnections()
     connect(this,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
     connect(explorerWidget,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
     connect(packetEditorWidget,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
+    connect(packetEditorWidget,SIGNAL(sigUpdateFileSize(int)),explorerWidget,SLOT(slotUpdateFileSize(int)));
+
     connect(explorerWidget,SIGNAL(sigEditPacket(QTreeWidgetItem *,int )),packetEditorWidget,SLOT(slotEditPacket(QTreeWidgetItem *,int )));
     connect(explorerWidget,SIGNAL(sigEditPacket(QTreeWidgetItem *,int )),this,SLOT(slotAddEditorTab()));
+
+    connect(captureWidget,SIGNAL(sigInspectPacket(QString)),this,SLOT(slotAddInspectorTab()));
+
+    connect(explorerWidget,SIGNAL(sigAddCapturePacket(QString)),inspectorWidget,SLOT(slotAddPacketTypes(QString)));
+    connect(explorerWidget,SIGNAL(sigFileAdded(QString)),inspectorWidget,SLOT(slotAddPacketTypes(QString)));
+    connect(explorerWidget,SIGNAL(sigFileDeleted(QString)),inspectorWidget,SLOT(slotDeletePacketTypes(QString)));
     connect(explorerWidget,SIGNAL(sigCapture()),this,SLOT(slotAddCapturesTab()));
+
     connect(worker,SIGNAL(sigCaptureReady(QString)),captureWidget,SLOT(slotSetInterfaceName(QString)));
 }
 
@@ -123,6 +134,17 @@ void MainScreen::slotAddCapturesTab()
 {
     tabWidget->insertTab(2,captureWidget,menuList.at(3));
     tabWidget->setCurrentWidget(captureWidget);
+
+}
+
+void MainScreen::slotAddInspectorTab()
+{
+    tabWidget->insertTab(2,inspectorWidget,menuList.at(4));
+    tabWidget->setCurrentWidget(inspectorWidget);
+}
+
+void MainScreen::slotRemoveInspectorTab()
+{
 
 }
 

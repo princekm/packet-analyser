@@ -176,10 +176,21 @@ void PacketEditor::updateArrayChildren(QTreeWidgetItem *item)
     }
 }
 
+void PacketEditor::removeAllChildren(QTreeWidgetItem *item)
+{
+    if(item)
+    {
+        for(int i=0;i<item->childCount();++i)
+        {
+            removeAllChildren(item->child(i));
+            item->removeChild(item->child(i));
+        }
+    }
+}
+
+
 QString PacketEditor::saveToFile(QTreeWidgetItem *item)
 {
-    static QString text="";
-    static QString indentation="";
 
     if(item)
     {
@@ -188,16 +199,16 @@ QString PacketEditor::saveToFile(QTreeWidgetItem *item)
         QString format=item->text(2);
         QString size=item->text(3);
 
-        text+=indentation+"<"+typeName+" name=\""+variableName+"\" format=\""+format+"\" size=\""+size+"\" >\n";
+        fileContent+=indentation+"<"+typeName+" name=\""+variableName+"\" format=\""+format+"\" size=\""+size+"\" >\n";
         indentation+=" ";
         for(int i=0;i<item->childCount();++i)
         {
             saveToFile(item->child(i));
         }
         indentation.remove(indentation.length()-1,1);
-        text+=indentation+"</"+typeName+">\n";
+        fileContent+=indentation+"</"+typeName+">\n";
     }
-    return text;
+    return fileContent;
 }
 
 QTreeWidgetItem* PacketEditor::isArrayElement(QTreeWidgetItem *item)
@@ -223,9 +234,11 @@ void PacketEditor::slotSave()
     qDebug()<<rootItem->text(0);
     QString text=saveToFile(rootItem);
     qDebug()<<text;
+    fileContent="";
+    indentation="";
     if(file.isOpen())
         file.close();
-    file.open(QFile::WriteOnly);
+    file.open(QFile::WriteOnly|QFile::Truncate);
     if(file.isOpen())
     {
         int bytesWritten=file.write(text.toLatin1());
@@ -234,6 +247,8 @@ void PacketEditor::slotSave()
             sigSnackBar("'"+treeWidget->topLevelItem(0)->text(0)+"' is saved",UIManager::Resources::NOTIFY_COLOR);
         else
             sigSnackBar("'"+treeWidget->topLevelItem(0)->text(0)+"' could not be saved",UIManager::Resources::ERROR_COLOR);
+
+        emit sigUpdateFileSize(file.size());
         file.close();
     }
     else
@@ -509,7 +524,7 @@ void PacketEditor::createTree(QDomNode node, QTreeWidgetItem *item)
         item->setText(0,variableName);
 
         if(typeName=="Object")
-             item->setIcon(0,QIcon(UIManager::Resources::FOLDER_ICON));
+            item->setIcon(0,QIcon(UIManager::Resources::FOLDER_ICON));
         else
             item->setIcon(0,QIcon(UIManager::Resources::FILE_ICON));
 
@@ -560,7 +575,9 @@ void PacketEditor::slotEditPacket(QTreeWidgetItem *item, int column)
         if(file.size()>0)
         {
             qDebug()<<"file size>0";
+            removeAllChildren(rootItem);
             populateTree();
+            file.close();
         }
     }
     else

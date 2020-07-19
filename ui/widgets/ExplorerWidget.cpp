@@ -28,7 +28,11 @@ ExplorerWidget::ExplorerWidget(Worker *worker, QWidget *parent)
 void ExplorerWidget::init()
 {
 
+
     rootFolderName="Packets";
+    rootItem = new QTreeWidgetItem();
+    rootItem->setIcon(0,QIcon(UIManager::Resources::FOLDER_ICON));
+    rootItem->setText(0,rootFolderName);
     fileString = "File";
     folderString = "Folder";
     treeWidget = new QTreeWidget;
@@ -105,12 +109,14 @@ bool ExplorerWidget::clearFolder(const QString &folder)
 {
     bool deleted=true;
     QDir dir(folder);
-    QStringList entries = dir.entryList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
-    foreach (QString entry, entries) {
-        QFileInfo fileInfo(folder + "/" + entry);
+    QFileInfoList infoList = dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
+    foreach (QFileInfo fileInfo, infoList) {
+
         if (fileInfo.isFile())
         {
+            emit sigFileDeleted(fileInfo.filePath());
             deleted&=QFile::remove(fileInfo.filePath());
+
         }
         else if (fileInfo.isDir())
             return clearFolder(fileInfo.filePath());
@@ -118,26 +124,37 @@ bool ExplorerWidget::clearFolder(const QString &folder)
     deleted&=dir.rmdir(dir.absolutePath());
     return deleted;
 }
+
+QString ExplorerWidget::getSelectedItemType(QTreeWidgetItem *item)
+{
+    QString string=item->text(2);
+    return  string;
+}
+
+QString ExplorerWidget::getFullName(QTreeWidgetItem *widgetItem)
+{
+    if(widgetItem)
+    {
+        QString name=widgetItem->text(0);
+        QString fileType=widgetItem->text(2);
+        QString path=name.prepend(getFullName(widgetItem->parent()));
+        if(fileType!=fileString)
+            path.append("/");
+        return path;
+    }
+    return "";
+}
 void ExplorerWidget::slotDelete()
 {
     QList<QTreeWidgetItem*> itemsSelected=treeWidget->selectedItems();
 
-    qDebug()<<"deleting";
     if(itemsSelected.count()==1)
     {
         QTreeWidgetItem *selectedItem=itemsSelected.at(0);
         QVariant variant=selectedItem->data(2,Qt::DisplayRole);
         QString type=variant.value<QString>();
         QString fullName;
-        QTreeWidgetItem *item;
-        item=selectedItem;
-        while(item!=treeWidget->topLevelItem(0))
-        {
-            fullName.prepend("/"+item->text(0));
-            item=item->parent();
-        }
-        fullName.prepend(rootFolderName);
-
+        fullName=getFullName(selectedItem);
         if(type==folderString)
         {
             QDir dir(fullName);
@@ -145,25 +162,26 @@ void ExplorerWidget::slotDelete()
             if(dir.exists()){
                 if(clearFolder(fullName))
                 {
-                    sigSnackBar("'"+fullName + "' is deleted",UIManager::Resources::NOTIFY_COLOR);
+                    emit  sigSnackBar("'"+fullName + "' is deleted",UIManager::Resources::NOTIFY_COLOR);
                     selectedItem->parent()->removeChild(selectedItem);
+                    treeWidget->repaint();
                 }
                 else
 
-                    sigSnackBar("'"+fullName + "' could not be deleted",UIManager::Resources::ERROR_COLOR);
+                    emit  sigSnackBar("'"+fullName + "' could not be deleted",UIManager::Resources::ERROR_COLOR);
             }
         }
         else if(type == fileString)
         {
-            qDebug()<<fullName;
             bool deleted=QFile::remove(fullName);
             if(deleted)
             {
-                sigSnackBar("'"+fullName + "' is deleted",UIManager::Resources::NOTIFY_COLOR);
+                emit sigSnackBar("'"+fullName + "' is deleted",UIManager::Resources::NOTIFY_COLOR);
+                emit sigFileDeleted(getFullName(selectedItem));
                 selectedItem->parent()->removeChild(selectedItem);
             }
             else
-                sigSnackBar("'"+fullName + "' could not be deleted",UIManager::Resources::ERROR_COLOR);
+                emit sigSnackBar("'"+fullName + "' could not be deleted",UIManager::Resources::ERROR_COLOR);
 
 
         }
@@ -183,15 +201,7 @@ void ExplorerWidget::slotCreateFile(QString name)
         QTreeWidgetItem *parentItem=itemsSelected.at(0);
         QVariant variant=parentItem->data(2,Qt::DisplayRole);
         QString type=variant.value<QString>();
-        QString fullName;
-        QTreeWidgetItem *item;
-        item=parentItem;
-        while(item!=treeWidget->topLevelItem(0))
-        {
-            fullName.prepend("/"+item->text(0));
-            item=item->parent();
-        }
-        fullName.prepend(rootFolderName);
+        QString fullName=getFullName(parentItem);
 
         if(nameEntryDialog->getType()==EntryType::FILE_TYPE)
         {
@@ -261,7 +271,20 @@ void ExplorerWidget::slotEditPacket(QTreeWidgetItem *item, int column)
 
 void ExplorerWidget::slotCapture()
 {
-    emit sigCapture();
+    QTreeWidgetItem *item=treeWidget->selectedItems().at(0);
+    QString filetypeString=getSelectedItemType(item);
+    qDebug()<<filetypeString;
+    if(filetypeString==fileString)
+    {
+        emit sigCapture();
+        emit sigAddCapturePacket(getFullName(treeWidget->selectedItems().at(0)));
+    }
+
+}
+
+void ExplorerWidget::slotUpdateFileSize(int size)
+{
+    treeWidget->selectedItems().at(0)->setText(1,"Size:"+QString::number(size)+" B");
 }
 
 void ExplorerWidget::setUpConnections()
@@ -301,9 +324,6 @@ void ExplorerWidget::initActions()
 void ExplorerWidget::populateTree()
 {
     treeWidget->setColumnCount(3);
-    QTreeWidgetItem *rootItem = new QTreeWidgetItem();
-    rootItem->setIcon(0,QIcon(UIManager::Resources::FOLDER_ICON));
-    rootItem->setText(0,rootFolderName);
     treeWidget->addTopLevelItem(rootItem);
     treeWidget->headerItem()->setText(0,"Name");
     treeWidget->headerItem()->setText(1,"Details");
@@ -313,28 +333,35 @@ void ExplorerWidget::populateTree()
     treeWidget->setColumnWidth(0,colWidth);
     treeWidget->setColumnWidth(1,colWidth);
     treeWidget->setColumnWidth(2,colWidth);
+    rootItem->setExpanded(true);
     if(dir.exists()){
         QFileInfoList list = dir.entryInfoList(QDir::Files|QDir::Dirs|QDir::NoDotAndDotDot);
         rootItem->setText(1,"Items:"+QString::number(list.count()));
         rootItem->setText(2,folderString);
         for (int i = 0; i < list.count(); ++i) {
             QFileInfo fileInfo = list.at(i);
-            if(fileInfo.isDir()){
+            if(fileInfo.isDir())
+            {
                 QDir dir(fileInfo.absoluteFilePath());
                 if(dir.exists())
                 {
-                    QFileInfoList innerList = dir.entryInfoList(QStringList()<<UIManager::Resources::FILE_EXTENSION,QDir::Files|QDir::NoDotAndDotDot);
+                    QFileInfoList innerList = dir.entryInfoList(QStringList()<<"*"+UIManager::Resources::FILE_EXTENSION,QDir::Files|QDir::NoDotAndDotDot);
                     QTreeWidgetItem *parentItem= createFolderEntry(rootItem,fileInfo.fileName(),innerList.count());
-                    for (int j= 0; j < innerList.count(); ++j) {
+                    for (int j= 0; j < innerList.count(); ++j)
+                    {
                         QFileInfo fileInfo = innerList.at(j);
-                        createFileEntry(parentItem,fileInfo.fileName());
+                        if(fileInfo.isFile())
+                            createFileEntry(parentItem,fileInfo.absoluteFilePath());
                     }
+                }
+                else
+                {
                 }
 
             }
             else if(fileInfo.fileName().endsWith(UIManager::Resources::FILE_EXTENSION))
             {
-                createFileEntry(rootItem,fileInfo.fileName());
+                createFileEntry(rootItem,fileInfo. absoluteFilePath());
 
             }
         }
@@ -344,12 +371,12 @@ void ExplorerWidget::populateTree()
 QTreeWidgetItem* ExplorerWidget::createFileEntry(QTreeWidgetItem *parentItem,QFileInfo fileInfo )
 {
     QTreeWidgetItem *item = new QTreeWidgetItem();
-
     item->setText(0,fileInfo.fileName());
     item->setIcon(0,QIcon(UIManager::Resources::FILE_ICON));
     item->setText(1,"Size:"+QString::number(fileInfo.size())+" B");
     item->setText(2,fileString);
     parentItem->addChild(item);
+    emit sigFileAdded(getFullName(item));
     return item;
 
 }
@@ -361,7 +388,6 @@ QTreeWidgetItem* ExplorerWidget::createFolderEntry(QTreeWidgetItem *parentItem, 
     item->setIcon(0,QIcon(UIManager::Resources::FOLDER_ICON));
     item->setText(1,"Files:"+QString::number(count));
     item->setText(2,folderString);
-
     parentItem->addChild(item);
     return  item;
 

@@ -25,7 +25,7 @@ HEADERS += UIManager.h \
            screens/MainScreen.h \
            widgets/CaptureWidget.h \
            widgets/ExplorerWidget.h \
-           widgets/InspectWidget.h \
+           widgets/InspectorWidget.h \
            widgets/PacketEditor.h \
            widgets/SettingsWidget.h \
            widgets/SnackBar.h \
@@ -39,7 +39,7 @@ SOURCES += UIManager.cpp \
            screens/MainScreen.cpp \
            widgets/CaptureWidget.cpp \
            widgets/ExplorerWidget.cpp \
-           widgets/InspectWidget.cpp \
+           widgets/InspectorWidget.cpp \
            widgets/PacketEditor.cpp \
            widgets/SettingsWidget.cpp \
            widgets/SnackBar.cpp \
