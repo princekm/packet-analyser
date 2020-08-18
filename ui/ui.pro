@@ -15,11 +15,13 @@ INCLUDEPATH += . \
 
 MOC_DIR = ../generated/moc
 OBJECTS_DIR = ../generated/obj
+CONFIG+=sdk_no_version_check
 
 # Input
 HEADERS += UIManager.h \
            dialogs/ArrayDialog.h \
            dialogs/DataTypeDialog.h \
+           dialogs/FormatDialog.h \
            dialogs/NameEntryDialog.h \
            dialogs/ObjectTypeDialog.h \
            screens/MainScreen.h \
@@ -29,11 +31,12 @@ HEADERS += UIManager.h \
            widgets/PacketEditor.h \
            widgets/SettingsWidget.h \
            widgets/SnackBar.h \
-           widgets/SplashScreen.h \
+           screens/SplashScreen.h \
            widgets/Widget.h
 SOURCES += UIManager.cpp \
            dialogs/ArrayDialog.cpp \
            dialogs/DataTypeDialog.cpp \
+           dialogs/FormatDialog.cpp \
            dialogs/NameEntryDialog.cpp \
            dialogs/ObjectTypeDialog.cpp \
            screens/MainScreen.cpp \
@@ -43,7 +46,7 @@ SOURCES += UIManager.cpp \
            widgets/PacketEditor.cpp \
            widgets/SettingsWidget.cpp \
            widgets/SnackBar.cpp \
-           widgets/SplashScreen.cpp \
+           screens/SplashScreen.cpp \
            widgets/Widget.cpp
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../lib/release/ -lengine.1.0.0

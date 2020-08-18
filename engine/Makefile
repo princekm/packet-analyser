@@ -17,7 +17,7 @@ CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 DEFINES       = -DQT_QML_DEBUG -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I. -I../pcap -I../pcap -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I../generated/moc -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -F/Users/prinz/Qt/5.13.0/clang_64/lib
+INCPATH       = -I. -I. -I../inc -I../pcap -I../pcap -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I../generated/moc -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -F/Users/prinz/Qt/5.13.0/clang_64/lib
 QMAKE         = /Users/prinz/Qt/5.13.0/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -688,9 +688,11 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib DataStore.h -o ../generated/moc/moc_DataStore.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib DataStore.h -o ../generated/moc/moc_DataStore.cpp
 
 ../generated/moc/moc_Worker.cpp: Worker.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
@@ -701,12 +703,15 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		../pcap/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib Worker.h -o ../generated/moc/moc_Worker.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib Worker.h -o ../generated/moc/moc_Worker.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -732,6 +737,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/DataStore.o DataStore.cpp
@@ -745,9 +752,12 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		../pcap/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QThread \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \

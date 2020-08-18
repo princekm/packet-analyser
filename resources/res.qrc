@@ -1,8 +1,21 @@
 <RCC>
     <qresource prefix="/">
-        <file>folder.png</file>
-        <file>file.png</file>
         <file>ethernet.png</file>
+        <file>packets.png</file>
         <file>close.png</file>
+        <file>ok.png</file>
+        <file>file.png</file>
+        <file>info.png</file>
+        <file>folder.png</file>
+        <file>add.png</file>
+        <file>trash.png</file>
+        <file>camera.png</file>
+        <file>save.png</file>
+        <file>start.png</file>
+        <file>stop.png</file>
+        <file>clear.png</file>
+        <file>edit.png</file>
+        <file>view.png</file>
+        <file>filter.png</file>
     </qresource>
 </RCC>

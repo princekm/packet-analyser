@@ -2,12 +2,14 @@
 #include "Enum.h"
 #include <QApplication>
 #include "UIManager.h"
+#include <QDebug>
 MainScreen::MainScreen(Worker *worker, QWidget *parent)
 {
     this->worker=worker;
     init();
     setUpConnections();
     applyStyle();
+    emit sigConnected();
 
 }
 
@@ -20,22 +22,27 @@ MainScreen::~MainScreen()
 void MainScreen::init()
 {
     setAttribute(Qt::WA_MacShowFocusRect, 0);
+    setWindowTitle(qApp->applicationName());
+    setWindowIcon(QIcon(UIManager::Resources::APP_ICON));
 
     QSize wSize(UIManager::Size::windowSize);
     QSize headingSize(UIManager::Size::headingSize);
     QSize snackSize(UIManager::Size::snackSize);
     QSize iconSize(headingSize.height(),headingSize.height());
-    setFixedSize(wSize);
-    closeButton = new QToolButton();
+    setMinimumSize(wSize);
 
-    heading = new QLabel(qApp->objectName());
-    toolButton =  new QToolButton(heading);
-    toolButton->setFixedSize(iconSize);
-    toolButton->move(wSize.width()-toolButton->width(),0);
-    closeButton->setParent(heading);
-    heading->setFixedSize(headingSize);
+    heading = new QLabel();
+    indicator = new QProgressBar();
+    heading->setLayout(new QHBoxLayout);
+    heading->layout()->addWidget(indicator);
+    indicator->setRange(0,359);
+    indicator->setValue(0);
+    indicator->hide();
+    // indicator->setWrapping(true);
+    indicator->setFixedSize(headingSize.height()*5,headingSize.height());
+
+    heading->setFixedHeight(headingSize.height());
     heading->setAlignment(Qt::AlignCenter);
-    setWindowFlags(Qt::FramelessWindowHint);
     settingsWidget = new SettingsWidget(worker);
     explorerWidget = new ExplorerWidget(worker);
     captureWidget = new CaptureWidget();
@@ -44,17 +51,21 @@ void MainScreen::init()
 
     tabWidget = new QTabWidget();
     mainLayout = new QVBoxLayout(this);
-    menuList << "Settings" <<"Packets"<<"Editor"<<"Captures"<<"Inspect";
+    menuList << "Settings" <<"Explorer"<<"Inspect"<<"Sniffer"<<"Editor"<<"Help";
     tabWidget->addTab(settingsWidget,menuList.at(0));
     tabWidget->addTab(explorerWidget,menuList.at(1));
+    tabWidget->addTab(inspectorWidget,menuList.at(2));
+    tabWidget->addTab(captureWidget,menuList.at(3));
+
+
+    snackBar = new SnackBar(heading);
+    snackBar->setMinimumSize(headingSize);
 
     mainLayout->addWidget(heading);
     mainLayout->addWidget(tabWidget);
+    mainLayout->addWidget(snackBar);
     mainLayout->setMargin(0);
-    snackBar = new SnackBar();
-    snackBar->setParent(this);
-    snackBar->setFixedSize(snackSize);
-    snackBar->move(0,wSize.height()-snackSize.height());
+
 
 }
 
@@ -67,38 +78,67 @@ void MainScreen::setUpConnections()
     connect(captureWidget,SIGNAL(sigStartCapture()),worker,SLOT(slotStartCapture()));
     connect(captureWidget,SIGNAL(sigStopCapture()),worker,SLOT(slotStopCapture()));
 
-    connect(closeButton,SIGNAL(clicked()),this,SLOT(slotCloseApp()));
     connect(Worker::getDataStore(),SIGNAL(sigInterfaceChanged(QString)),this,SLOT(slotInterfaceNameNotify(QString)));
-    connect(Worker::getDataStore(),SIGNAL(sigEndiannessChanged(QString)),this,SLOT(slotEndiannessNotify(QString)));
 
     connect(this,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
     connect(explorerWidget,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
     connect(packetEditorWidget,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
+    connect(inspectorWidget,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
+
     connect(packetEditorWidget,SIGNAL(sigUpdateFileSize(int)),explorerWidget,SLOT(slotUpdateFileSize(int)));
+
+    connect(packetEditorWidget,SIGNAL(sigSaved(QString)),inspectorWidget,SLOT(slotPopulateTree(QString)));
 
     connect(explorerWidget,SIGNAL(sigEditPacket(QTreeWidgetItem *,int )),packetEditorWidget,SLOT(slotEditPacket(QTreeWidgetItem *,int )));
     connect(explorerWidget,SIGNAL(sigEditPacket(QTreeWidgetItem *,int )),this,SLOT(slotAddEditorTab()));
 
-    connect(captureWidget,SIGNAL(sigInspectPacket(QString)),this,SLOT(slotAddInspectorTab()));
+    connect(captureWidget,SIGNAL(sigInspectPacket(QString)),this,SLOT(slotGotoInspectorTab()));
 
     connect(explorerWidget,SIGNAL(sigAddCapturePacket(QString)),inspectorWidget,SLOT(slotAddPacketTypes(QString)));
     connect(explorerWidget,SIGNAL(sigFileAdded(QString)),inspectorWidget,SLOT(slotAddPacketTypes(QString)));
     connect(explorerWidget,SIGNAL(sigFileDeleted(QString)),inspectorWidget,SLOT(slotDeletePacketTypes(QString)));
-    connect(explorerWidget,SIGNAL(sigCapture()),this,SLOT(slotAddCapturesTab()));
+    connect(explorerWidget,SIGNAL(sigCapture()),this,SLOT(slotGotoInspectorTab()));
+
+    connect(inspectorWidget,SIGNAL(sigRequestFileList()),explorerWidget,SLOT(slotHandleRequestFileList()));
+    connect(explorerWidget,SIGNAL(sigEmitFileList(QStringList)),inspectorWidget,SLOT(slotUpdateFileList(QStringList)));
 
     connect(worker,SIGNAL(sigCaptureReady(QString)),captureWidget,SLOT(slotSetInterfaceName(QString)));
+    connect(this,SIGNAL(sigConnected()),inspectorWidget,SIGNAL(sigRequestFileList()));
+
+    connect(captureWidget,SIGNAL(sigBusySignal()),this,SLOT(slotRotateDial()));
+    connect(inspectorWidget,SIGNAL(sigInspect(bool)),this,SLOT(slotInspect(bool)));
+    connect(captureWidget,SIGNAL(sigEnable(bool)),settingsWidget,SLOT(slotEnable(bool)));
+    connect(captureWidget,SIGNAL(sigEnable(bool)),inspectorWidget,SLOT(slotDisable(bool)));
+    connect(captureWidget,SIGNAL(sigEnable(bool)),this,SLOT(slotEnable(bool)));
+    connect(captureWidget,SIGNAL(sigFilter(QString)),worker,SLOT(slotSetFilter(QString)));
+    connect(worker,SIGNAL(sigFiltered(bool)),captureWidget,SLOT(slotFilterReady(bool)));
 }
 
 
 void MainScreen::applyStyle()
 {
-    setStyleSheet("QFrame{background:#2c3e50}");
-    heading->setStyleSheet("QLabel{background:#2980b9;color:white}");
-    toolButton->setStyleSheet("QToolButton{background:transparent}");
-    closeButton->setStyleSheet("QToolButton{background:transparent}");
-    toolButton->setIcon(QIcon(UIManager::Resources::APP_ICON));
-    closeButton->setIcon(QIcon(UIManager::Resources::CLOSE_ICON));
+    setStyleSheet("QFrame{background:#ecf0f1;color:black}");
 
+}
+
+void MainScreen::slotInspect(bool turnOn)
+{
+    if(turnOn)
+    {
+        connect(captureWidget,SIGNAL(sigPayload(uchar*,int)),inspectorWidget,SLOT(slotPayload(uchar*,int)));
+    }
+    else
+    {
+        disconnect(captureWidget,SIGNAL(sigPayload(uchar*,int)),inspectorWidget,SLOT(slotPayload(uchar*,int)));
+    }
+}
+
+void MainScreen::slotRotateDial()
+{
+    int val=indicator->value();
+    val+=10;
+    val%=360;
+    indicator->setValue(val);
 }
 
 void MainScreen::slotCloseApp()
@@ -112,15 +152,10 @@ void MainScreen::slotInterfaceNameNotify(QString interfaceName)
     emit sigSnackBar(text+interfaceName,UIManager::Resources::NOTIFY_COLOR);
 }
 
-void MainScreen::slotEndiannessNotify(QString interfaceName)
-{
-    QString text="Selected Endianness:";
-    emit sigSnackBar(text+interfaceName,UIManager::Resources::NOTIFY_COLOR);
-}
 
 void MainScreen::slotAddEditorTab()
 {
-    tabWidget->insertTab(2,packetEditorWidget,menuList.at(2));
+    tabWidget->insertTab(2,packetEditorWidget,menuList.at(4));
     tabWidget->setCurrentWidget(packetEditorWidget);
 
 }
@@ -137,15 +172,30 @@ void MainScreen::slotAddCapturesTab()
 
 }
 
-void MainScreen::slotAddInspectorTab()
+void MainScreen::slotGotoInspectorTab()
 {
-    tabWidget->insertTab(2,inspectorWidget,menuList.at(4));
     tabWidget->setCurrentWidget(inspectorWidget);
 }
 
 void MainScreen::slotRemoveInspectorTab()
 {
 
+}
+
+void MainScreen::slotEnable(bool enable)
+{
+    if(!enable)
+    {
+        indicator->setValue(0);
+        heading->setText("Capturing");
+        indicator->show();
+    }
+    else
+    {
+        indicator->hide();
+        heading->setText("");
+        heading->repaint();
+    }
 }
 
 void MainScreen::slotRemoveCapturesTab()
@@ -156,5 +206,9 @@ void MainScreen::slotRemoveCapturesTab()
 
 void MainScreen::slotProcessWorkerInfo(QString message, Worker::MessageType type)
 {
-    emit sigSnackBar(message,UIManager::Resources::NOTIFY_COLOR);
+    if(type==Worker::INFO)
+        emit sigSnackBar(message,UIManager::Resources::NOTIFY_COLOR);
+    else if(type==Worker::ERROR)
+        emit sigSnackBar(message,UIManager::Resources::ERROR_COLOR);
+
 }

@@ -10,6 +10,8 @@ void Object::setVariableName(const QString &value)
     variableName = value;
 }
 
+
+
 Object::~Object()
 {
 

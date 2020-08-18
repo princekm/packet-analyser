@@ -54,10 +54,20 @@ OBJECTS_DIR   = ../generated/obj/
 
 SOURCES       = ArrayTypeObject.cpp \
 		Object.cpp \
-		TypeObject.cpp 
+		TypeObject.cpp \
+		ASCII.cpp \
+		Binary.cpp \
+		Decimal.cpp \
+		Format.cpp \
+		HexaDecimal.cpp 
 OBJECTS       = ../generated/obj/ArrayTypeObject.o \
 		../generated/obj/Object.o \
-		../generated/obj/TypeObject.o
+		../generated/obj/TypeObject.o \
+		../generated/obj/ASCII.o \
+		../generated/obj/Binary.o \
+		../generated/obj/Decimal.o \
+		../generated/obj/Format.o \
+		../generated/obj/HexaDecimal.o
 DIST          = /Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/prinz/Qt/5.13.0/clang_64/mkspecs/qdevice.pri \
 		/Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/device_config.prf \
@@ -231,9 +241,19 @@ DIST          = /Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/lex.prf \
 		types.pro ArrayTypeObject.h \
 		Object.h \
-		TypeObject.h ArrayTypeObject.cpp \
+		TypeObject.h \
+		ASCII.h \
+		Binary.h \
+		Decimal.h \
+		Format.h \
+		HexaDecimal.h ArrayTypeObject.cpp \
 		Object.cpp \
-		TypeObject.cpp
+		TypeObject.cpp \
+		ASCII.cpp \
+		Binary.cpp \
+		Decimal.cpp \
+		Format.cpp \
+		HexaDecimal.cpp
 QMAKE_TARGET  = types
 DESTDIR       = ../lib/
 TARGET        = libtypes.1.0.0.dylib
@@ -642,8 +662,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ArrayTypeObject.h Object.h TypeObject.h $(DISTDIR)/
-	$(COPY_FILE) --parents ArrayTypeObject.cpp Object.cpp TypeObject.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ArrayTypeObject.h Object.h TypeObject.h ASCII.h Binary.h Decimal.h Format.h HexaDecimal.h $(DISTDIR)/
+	$(COPY_FILE) --parents ArrayTypeObject.cpp Object.cpp TypeObject.cpp ASCII.cpp Binary.cpp Decimal.cpp Format.cpp HexaDecimal.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -713,6 +733,57 @@ compiler_clean: compiler_moc_predefs_clean
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		Object.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/TypeObject.o TypeObject.cpp
+
+../generated/obj/ASCII.o: ASCII.cpp ASCII.h \
+		Format.h \
+		TypeObject.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		Object.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/ASCII.o ASCII.cpp
+
+../generated/obj/Binary.o: Binary.cpp Binary.h \
+		Format.h \
+		TypeObject.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		Object.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/Binary.o Binary.cpp
+
+../generated/obj/Decimal.o: Decimal.cpp Decimal.h \
+		Format.h \
+		TypeObject.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		Object.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/Decimal.o Decimal.cpp
+
+../generated/obj/Format.o: Format.cpp Format.h \
+		TypeObject.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		Object.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/Format.o Format.cpp
+
+../generated/obj/HexaDecimal.o: HexaDecimal.cpp HexaDecimal.h \
+		Format.h \
+		TypeObject.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		Object.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/HexaDecimal.o HexaDecimal.cpp
 
 ####### Install
 

@@ -4,12 +4,13 @@
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QTimer>
+#include <QPushButton>
 class SnackBar:public Widget
 {
     Q_OBJECT
 private:
-    QLabel *infoText;
     QTimer *displayTimer;
+    QPushButton *iconButton;
     int counter;
 public:
     explicit SnackBar(QWidget *parent=nullptr);
@@ -18,7 +19,7 @@ public:
     void setCounter(int value);
 
 private:
-    QHBoxLayout *mainLayout;
+    QVBoxLayout *mainLayout;
     void init() override;
     void setUpConnections() override;
     void applyStyle() override;

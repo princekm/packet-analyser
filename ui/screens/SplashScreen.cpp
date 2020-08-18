@@ -13,9 +13,9 @@ SplashScreen::SplashScreen(QWidget *parent) : Widget(parent)
 }
 void SplashScreen::init()
 {
-    QSize wSize(UIManager::Size::windowSize);
+    QSize wSize(UIManager::Size::windowSize/3);
     mainLayout = new QVBoxLayout(this);
-    label = new QLabel(qApp->objectName());
+    label = new QLabel(qApp->applicationName());
     label->setAlignment(Qt::AlignCenter);
     progressBar = new QProgressBar();
     progressBar->setRange(0,100);
@@ -23,7 +23,6 @@ void SplashScreen::init()
     mainLayout->addWidget(label);
     mainLayout->addWidget(progressBar);
     setWindowFlags(Qt::FramelessWindowHint);
-
 }
 
 

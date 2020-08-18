@@ -9,6 +9,7 @@ private:
     QString format;
 
 public:
+     TypeObject();
     explicit TypeObject(QString variableName,QString typeName,QString format,int size);
     ~TypeObject();
     QString getFormat() const;

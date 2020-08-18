@@ -17,7 +17,7 @@ CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I. -I../ui -I../ui/widgets -I../ui/screens -I../engine -I../ui -I../engine -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -F/Users/prinz/Qt/5.13.0/clang_64/lib
+INCPATH       = -I. -I. -I../inc -I../ui -I../ui/widgets -I../ui/screens -I../engine -I../ui -I../engine -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -F/Users/prinz/Qt/5.13.0/clang_64/lib
 QMAKE         = /Users/prinz/Qt/5.13.0/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -236,7 +236,7 @@ TARGET        = ../PacketAnalyser
 
 ####### Custom Variables
 EXPORT_QMAKE_MAC_SDK = macosx
-EXPORT_QMAKE_MAC_SDK_VERSION = 10.15.4
+EXPORT_QMAKE_MAC_SDK_VERSION = 10.15.6
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_ACTIVE_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(ARCHS))
@@ -689,8 +689,11 @@ AppManager.o: AppManager.cpp AppManager.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QThread \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -713,8 +716,11 @@ main.o: main.cpp /Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QThread \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \

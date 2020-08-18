@@ -40,10 +40,10 @@ void NameEntryDialog::init()
     heading = new QLabel("Enter Name");
     heading->setAlignment(Qt::AlignCenter);
     nameEdit = new QLineEdit();
-    mainLayout->addWidget(heading);
-    mainLayout->addWidget(nameEdit);
+    mainLayout->addWidget(heading,1);
+    mainLayout->addWidget(nameEdit,1);
     mainLayout->setMargin(0);
-    mainLayout->setSpacing(2);
+    mainLayout->setSpacing(0);
     setFixedSize(wSize);
     setWindowFlags(Qt::FramelessWindowHint);
 }

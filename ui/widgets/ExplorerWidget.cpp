@@ -36,7 +36,7 @@ void ExplorerWidget::init()
     fileString = "File";
     folderString = "Folder";
     treeWidget = new QTreeWidget;
-    treeWidget->setFixedWidth(UIManager::Size::windowSize.width());
+    treeWidget->setMinimumWidth(UIManager::Size::windowSize.width());
     nameEntryDialog = new NameEntryDialog();
     addButton = new QPushButton("Add");
     deleteButton = new QPushButton("Delete");
@@ -51,6 +51,18 @@ void ExplorerWidget::init()
     mainLayout = new QVBoxLayout(this);
     setContextMenuPolicy(Qt::CustomContextMenu);
     initActions();
+    QIcon addIcon(UIManager::Resources::ADD_ICON);
+    QIcon deleteIcon(UIManager::Resources::DELETE_ICON);
+    QIcon captureIcon(UIManager::Resources::CAPTURE_ICON);
+    QIcon boxIcon(UIManager::Resources::BOX_ICON);
+    rootItem->setIcon(0,boxIcon);
+    addFileAction->setIcon(addIcon);
+    addFolderAction->setIcon(addIcon);
+    deleteAction->setIcon(deleteIcon);
+    captureAction->setIcon(captureIcon);
+    addButton->setIcon(addIcon);
+    deleteButton->setIcon(deleteIcon);
+    captureButton->setIcon(captureIcon);
     mainLayout->addLayout(buttonLayout);
     mainLayout->addWidget(treeWidget,Qt::AlignCenter);
     mainLayout->setMargin(0);
@@ -163,7 +175,15 @@ void ExplorerWidget::slotDelete()
                 if(clearFolder(fullName))
                 {
                     emit  sigSnackBar("'"+fullName + "' is deleted",UIManager::Resources::NOTIFY_COLOR);
+                    QTreeWidgetItem *parentItem=selectedItem->parent();
                     selectedItem->parent()->removeChild(selectedItem);
+                    int size=parentItem->text(1).split(":")[1].toInt();
+                    size--;
+                    if(rootItem==parentItem)
+                        rootItem->setText(1,"Items:"+QString::number(size));
+                    else
+                        parentItem->setText(1,"Files:"+QString::number(size));
+
                     treeWidget->repaint();
                 }
                 else
@@ -178,7 +198,16 @@ void ExplorerWidget::slotDelete()
             {
                 emit sigSnackBar("'"+fullName + "' is deleted",UIManager::Resources::NOTIFY_COLOR);
                 emit sigFileDeleted(getFullName(selectedItem));
+                QTreeWidgetItem *parentItem=selectedItem->parent();
                 selectedItem->parent()->removeChild(selectedItem);
+                int size=parentItem->text(1).split(":")[1].toInt();
+                size--;
+                if(rootItem==parentItem)
+                    rootItem->setText(1,"Items:"+QString::number(size));
+                else
+                    parentItem->setText(1,"Files:"+QString::number(size));
+                treeWidget->repaint();
+
             }
             else
                 emit sigSnackBar("'"+fullName + "' could not be deleted",UIManager::Resources::ERROR_COLOR);
@@ -207,14 +236,20 @@ void ExplorerWidget::slotCreateFile(QString name)
         {
             QFile file(fullName+"/"+name+UIManager::Resources::FILE_EXTENSION);
             bool opened=file.open(QFile::WriteOnly);
-            if(opened){
-
+            if(opened)
+            {
                 file.write(QByteArray());
                 QFileInfo fileInfo(file);
                 createFileEntry(itemsSelected.at(0),fileInfo);
                 file.close();
                 emit sigSnackBar("File '"+name+"' created successfully",UIManager::Resources::NOTIFY_COLOR);
                 parentItem->setExpanded(true);
+                int size=parentItem->text(1).split(":")[1].toInt();
+                size++;
+                if(rootItem==parentItem)
+                    rootItem->setText(1,"Items:"+QString::number(size));
+                else
+                    parentItem->setText(1,"Files:"+QString::number(size));
             }
         }
         else if(nameEntryDialog->getType()==EntryType::FOLDER_TYPE)
@@ -228,6 +263,14 @@ void ExplorerWidget::slotCreateFile(QString name)
                 createFolderEntry(itemsSelected.at(0),name,0);
                 emit sigSnackBar("Folder '"+name+"' created successfully",UIManager::Resources::NOTIFY_COLOR);
                 parentItem->setExpanded(true);
+                int size=parentItem->text(1).split(":")[1].toInt();
+                size++;
+                if(rootItem==parentItem)
+                    rootItem->setText(1,"Items:"+QString::number(size));
+                else
+                    parentItem->setText(1,"Files:"+QString::number(size));
+
+
             }
         }
 
@@ -273,7 +316,6 @@ void ExplorerWidget::slotCapture()
 {
     QTreeWidgetItem *item=treeWidget->selectedItems().at(0);
     QString filetypeString=getSelectedItemType(item);
-    qDebug()<<filetypeString;
     if(filetypeString==fileString)
     {
         emit sigCapture();
@@ -285,6 +327,28 @@ void ExplorerWidget::slotCapture()
 void ExplorerWidget::slotUpdateFileSize(int size)
 {
     treeWidget->selectedItems().at(0)->setText(1,"Size:"+QString::number(size)+" B");
+}
+
+void ExplorerWidget::slotHandleRequestFileList()
+{
+    QStringList fileList;
+    for(int i=0;i<rootItem->childCount();++i)
+    {
+        QTreeWidgetItem *child=rootItem->child(i);
+        QString fileType=getSelectedItemType(child);
+        if(fileType==fileString)
+            fileList<<rootFolderName+"/"+child->text(0);
+        else
+        {
+            QString folderName=child->text(0);
+            for(int j=0;j<child->childCount();++j)
+            {
+                QTreeWidgetItem *grandChild=child->child(j);
+                fileList<<rootFolderName+"/"+folderName+"/"+grandChild->text(0);
+            }
+        }
+    }
+    emit sigEmitFileList(fileList);
 }
 
 void ExplorerWidget::setUpConnections()
@@ -319,6 +383,7 @@ void ExplorerWidget::initActions()
     addFolderAction = new QAction("New Folder",this);
     deleteAction = new QAction("Delete",this);
     captureAction = new QAction("Capture",this);
+
 }
 
 void ExplorerWidget::populateTree()
@@ -329,10 +394,10 @@ void ExplorerWidget::populateTree()
     treeWidget->headerItem()->setText(1,"Details");
     treeWidget->headerItem()->setText(2,"Type");
     QDir dir(rootFolderName);
-    int colWidth=treeWidget->width()/3;
-    treeWidget->setColumnWidth(0,colWidth);
-    treeWidget->setColumnWidth(1,colWidth);
-    treeWidget->setColumnWidth(2,colWidth);
+//    int colWidth=treeWidget->width()/3;
+    treeWidget->setColumnWidth(0,200);
+//    treeWidget->setColumnWidth(1,colWidth);
+//    treeWidget->setColumnWidth(2,colWidth);
     rootItem->setExpanded(true);
     if(dir.exists()){
         QFileInfoList list = dir.entryInfoList(QDir::Files|QDir::Dirs|QDir::NoDotAndDotDot);

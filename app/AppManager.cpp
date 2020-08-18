@@ -21,7 +21,6 @@ void AppManager::setupConnections()
 void AppManager::init()
 {
     QFont f = qApp->font();
-    qApp->setObjectName("Packet Analyzer");
     f.setFamily("Monaco");
     f.setPointSize(10);
     qApp->setFont(f);

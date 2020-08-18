@@ -59,7 +59,7 @@ signals:
     void sigAddCapturePacket(QString fileName);
     void sigFileAdded(QString name);
     void sigFileDeleted(QString name);
-
+    void sigEmitFileList(QStringList fileList);
     void sigCapture();
 
 private slots:
@@ -73,6 +73,7 @@ private slots:
     void slotEditPacket(QTreeWidgetItem *item,int column);
     void slotCapture();
     void slotUpdateFileSize(int size);
+    void slotHandleRequestFileList();
 
 
 

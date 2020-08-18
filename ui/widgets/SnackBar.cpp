@@ -1,5 +1,5 @@
 #include "SnackBar.h"
-
+#include "UIManager.h"
 void SnackBar::setCounter(int value)
 {
     counter = value;
@@ -7,6 +7,7 @@ void SnackBar::setCounter(int value)
 
 SnackBar::SnackBar(QWidget *parent):Widget(parent)
 {
+    setWindowFlags(Qt::FramelessWindowHint);
     init();
     setUpConnections();
     applyStyle();
@@ -15,10 +16,10 @@ SnackBar::SnackBar(QWidget *parent):Widget(parent)
 
 void SnackBar::init()
 {
-    mainLayout = new QHBoxLayout(this);
-    infoText = new QLabel("");
-    infoText->setAlignment(Qt::AlignCenter);
-    mainLayout->addWidget(infoText);
+    mainLayout = new QVBoxLayout(this);
+    iconButton = new QPushButton();
+    iconButton->setFixedHeight(UIManager::Size::snackSize.height());
+    mainLayout->addWidget(iconButton);
     mainLayout->setMargin(0);
     mainLayout->setSpacing(0);
     displayTimer = new QTimer(this);
@@ -34,13 +35,29 @@ void SnackBar::setUpConnections()
 
 void SnackBar::applyStyle()
 {
-    infoText->setStyleSheet("QLabel{color:white;background:blue}");
+    iconButton->setStyleSheet("QPushButton{color:white;background:#95a5a6;border:none}");
 }
 
 void SnackBar::slotSetText(QString string,QColor color)
 {
-    infoText->setText(string);
-    infoText->setStyleSheet("QLabel{color:white;background:"+color.name()+"}");
+//    QWidget *parent = parentWidget();
+//    if(parent)
+//    {
+//        move(parent->pos());
+//    }
+    if(color==UIManager::Resources::NOTIFY_COLOR)
+    {
+        iconButton->setIcon(QIcon(UIManager::Resources::TICK_ICON));
+        iconButton->setStyleSheet("QPushButton{color:white;background:#27ae60;border:none}");
+
+    }
+    else
+    {
+        iconButton->setIcon(QIcon(UIManager::Resources::INFO_ICON));
+        iconButton->setStyleSheet("QPushButton{color:white;background:#c0392b;border:none}");
+
+    }
+    iconButton->setText(string);
     setCounter(0);
     if(!isVisible())
     {
@@ -50,6 +67,7 @@ void SnackBar::slotSetText(QString string,QColor color)
     if(!displayTimer->isActive()){
         displayTimer->start(1000);
     }
+    repaint();
 
 
 }

@@ -37,6 +37,20 @@ public:
         static const QString FILE_ICON;
         static const QString CLOSE_ICON;
         static const QString APP_ICON;
+        static const QString ADD_ICON;
+        static const QString DELETE_ICON;
+        static const QString INFO_ICON;
+        static const QString TICK_ICON;
+        static const QString CAPTURE_ICON;
+        static const QString SAVE_ICON;
+        static const QString START_ICON;
+        static const QString STOP_ICON;
+        static const QString BOX_ICON;
+        static const QString CLEAR_ICON;
+        static const QString EDIT_ICON;
+        static const QString VIEW_ICON;
+        static const QString FILTER_ICON;
+
         static const QString FILE_EXTENSION;
         static const QColor NOTIFY_COLOR;
         static const QColor ERROR_COLOR;

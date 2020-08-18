@@ -4,4 +4,4 @@ SUBDIRS +=  types \
             ui \
             app \
 
-CONFIG = ordered
+CONFIG += ordered sdk_no_version_check

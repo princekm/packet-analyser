@@ -8,8 +8,10 @@ TARGET = engine
 MOC_DIR = ../generated/moc
 OBJECTS_DIR = ../generated/obj
 INCLUDEPATH += .    \
+                ../inc \
                 ../pcap
 
+CONFIG+=sdk_no_version_check
 
 HEADERS += DataStore.h Worker.h
 SOURCES += DataStore.cpp Worker.cpp

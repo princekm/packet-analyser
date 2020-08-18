@@ -36,14 +36,21 @@ void PacketEditor::init()
     buttonLayout->addWidget(deleteButton);
     buttonLayout->addWidget(saveButton);
 
+    QIcon addIcon(UIManager::Resources::ADD_ICON);
+    QIcon deleteIcon(UIManager::Resources::DELETE_ICON);
+    QIcon saveIcon(UIManager::Resources::SAVE_ICON);
+    addButton->setIcon(addIcon);
+    deleteButton->setIcon(deleteIcon);
+    saveButton->setIcon(saveIcon);
+
     treeWidget = new QTreeWidget();
-    treeWidget->setFixedWidth(wSize.width());
+    treeWidget->setMinimumWidth(wSize.width());
     treeWidget->addTopLevelItem(rootItem);
     mainLayout->addLayout(buttonLayout);
     mainLayout->addWidget(treeWidget);
     mainLayout->setMargin(0);
     mainLayout->setSpacing(2);
-    setFixedSize(wSize);
+    setMinimumSize(wSize);
     setContextMenuPolicy(Qt::CustomContextMenu);
 
 
@@ -111,9 +118,16 @@ void PacketEditor::slotShowAddMenus()
 void PacketEditor::initActions()
 {
     addTypeAction = new QAction("New Type",this);
+    QIcon addIcon(UIManager::Resources::ADD_ICON);
+    QIcon deleteIcon(UIManager::Resources::DELETE_ICON);
     addObjectAction = new QAction("New Object",this);
     addArrayAction = new QAction("New Array",this);
     deleteAction = new QAction("Delete",this);
+
+    addTypeAction->setIcon(addIcon);
+    addObjectAction->setIcon(addIcon);
+    addArrayAction->setIcon(addIcon);
+    deleteAction->setIcon(deleteIcon);
 
 }
 
@@ -137,17 +151,13 @@ void PacketEditor::updateDelete(QTreeWidgetItem *item, int size)
     {
         if(tempItem->text(1)=="Object")
         {
-            qDebug()<<"object";
             QString sizeString = tempItem->text(3).split(" ")[0];
             int bytes=sizeString.toInt()-size;
-            qDebug()<<bytes;
             sizeString = QString::number(bytes);
-            qDebug()<<sizeString;
             tempItem->setText(3,sizeString+" B");
         }
         if(tempItem->text(0)=="root")
         {
-            qDebug()<<"breaking";
             break;
         }
         tempItem=tempItem->parent();
@@ -231,9 +241,7 @@ QTreeWidgetItem* PacketEditor::isArrayElement(QTreeWidgetItem *item)
 
 void PacketEditor::slotSave()
 {
-    qDebug()<<rootItem->text(0);
     QString text=saveToFile(rootItem);
-    qDebug()<<text;
     fileContent="";
     indentation="";
     if(file.isOpen())
@@ -244,11 +252,14 @@ void PacketEditor::slotSave()
         int bytesWritten=file.write(text.toLatin1());
 
         if(bytesWritten>0)
+        {
             sigSnackBar("'"+treeWidget->topLevelItem(0)->text(0)+"' is saved",UIManager::Resources::NOTIFY_COLOR);
+            emit sigUpdateFileSize(file.size());
+            emit sigSaved(treeWidget->topLevelItem(0)->text(0));
+        }
         else
             sigSnackBar("'"+treeWidget->topLevelItem(0)->text(0)+"' could not be saved",UIManager::Resources::ERROR_COLOR);
 
-        emit sigUpdateFileSize(file.size());
         file.close();
     }
     else
@@ -265,7 +276,6 @@ void PacketEditor::slotDelete()
     QString name=typeName.value<QString>();
     QTreeWidgetItem *parentItem=currentItem->parent();
 
-    qDebug()<<name;
     if(name!="root")
     {
         if(type=="Object")
@@ -294,7 +304,6 @@ void PacketEditor::slotDelete()
         else
         {
             int size=currentItem->text(3).split(" ")[0].toInt();
-            qDebug()<<"size to be deleted"<<size;
             QTreeWidgetItem *arrayObject=isArrayElement(currentItem);
             if(arrayObject)
             {
@@ -305,7 +314,6 @@ void PacketEditor::slotDelete()
             }
             else
             {
-                qDebug()<<"not array";
                 parentItem->removeChild(currentItem);
             }
             treeWidget->repaint();
@@ -363,7 +371,6 @@ void PacketEditor::slotHandleDataType(TypeObject typeObject)
 
 void PacketEditor::slotHandleObjectType(Object typeObject)
 {
-    qDebug()<<"Hello baby";
     QTreeWidgetItem *currentItem= treeWidget->currentItem();
     QTreeWidgetItem *childItem= new QTreeWidgetItem();
     childItem->setIcon(0,QIcon(":/folder.png"));
@@ -398,7 +405,6 @@ void PacketEditor::slotHandleArrayType(ArrayTypeObject typeObject)
     int bytes=typeObject.getSize()*typeObject.getIndices();
     sizeString = QString::number(bytes);
     arrayObject->setText(3,sizeString+" B");
-    qDebug()<<"here";
 
     for(int i=0;i<typeObject.getIndices();++i)
     {
@@ -417,7 +423,6 @@ void PacketEditor::slotHandleArrayType(ArrayTypeObject typeObject)
     QTreeWidgetItem *tempItem = arrayObject;
     while(1)
     {
-        qDebug()<<"received";
 
         if(tempItem->text(1)=="Object")
         {
@@ -499,13 +504,12 @@ void PacketEditor::populateTree()
     bool parsed=domDocument.setContent(file.readAll());
     if(parsed)
     {
-        emit sigSnackBar("File content parsable",UIManager::Resources::NOTIFY_COLOR);
         createTree(domDocument.firstChild(),rootItem);
 
     }
     else
     {
-        //        domDocument
+        emit sigSnackBar("Error:'"+file.fileName()+"' is corrupted",UIManager::Resources::ERROR_COLOR);
     }
 
 }
@@ -547,11 +551,7 @@ void PacketEditor::createTree(QDomNode node, QTreeWidgetItem *item)
 
 void PacketEditor::slotEditPacket(QTreeWidgetItem *item, int column)
 {
-    int colWidth=treeWidget->width()/4;
-    treeWidget->setColumnWidth(0,colWidth);
-    treeWidget->setColumnWidth(1,colWidth);
-    treeWidget->setColumnWidth(2,colWidth);
-    treeWidget->setColumnWidth(3,colWidth);
+    treeWidget->setColumnWidth(0,300);
 
     QVariant variant=item->data(2,Qt::DisplayRole);
     QString type=variant.value<QString>();
@@ -566,16 +566,21 @@ void PacketEditor::slotEditPacket(QTreeWidgetItem *item, int column)
     }
     fullName.prepend("Packets");
 
+    if(file.isOpen())
+    {
+        file.close();
+    }
     file.setFileName(fullName);
     bool opened=file.open(QFile::ReadWrite);
     if(opened)
     {
         sigSnackBar("File "+fullName+" is opened",UIManager::Resources::NOTIFY_COLOR);
         treeWidget->topLevelItem(0)->setText(0,fullName);
+        treeWidget->topLevelItem(0)->setIcon(0,QIcon(UIManager::Resources::EDIT_ICON));
+
+        removeAllChildren(rootItem);
         if(file.size()>0)
         {
-            qDebug()<<"file size>0";
-            removeAllChildren(rootItem);
             populateTree();
             file.close();
         }

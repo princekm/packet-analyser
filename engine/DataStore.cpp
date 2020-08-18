@@ -39,15 +39,17 @@ DataStore::DataStore(QObject *parent) : QObject(parent)
     dataTypeMap.insert("float",4);
     dataTypeMap.insert("double",8);
     dataTypeMap.insert("long",4);
+    dataTypeMap.insert("unsigned long",4);
     dataTypeMap.insert("long long",4);
+    dataTypeMap.insert("unsigned long long",4);
     dataTypeMap.insert("long double",16);
 
 
-    formatList.append("HEX");
-    formatList.append("OCT");
-    formatList.append("DEC");
+    formatList.append("DEFAULT");
+    formatList.append("HEXADECIMAL");
+    formatList.append("DECIMAL");
     formatList.append("ASCII");
-    formatList.append("BIN");
+    formatList.append("BINARY");
 
 
 
@@ -59,20 +61,13 @@ void DataStore::slotSetInterfaceName(QString interfaceName)
     emit sigInterfaceChanged(interfaceName);
 }
 
-void DataStore::slotSetEndianness(QString endianness)
-{
-    this->endianness=endianness;
-    emit sigEndiannessChanged(endianness);
-}
 
 void DataStore::slotRespondTypes()
 {
     QStringList datatypes;
     QList <QString> list= dataTypeMap.keys();
-    qDebug()<<"request received"<<list.count();
     foreach(QString key,dataTypeMap.keys())
     {
-        qDebug()<<key;
         list<<key;
     }
     emit sigDataTypeList(datatypes);

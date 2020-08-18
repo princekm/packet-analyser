@@ -55,6 +55,7 @@ OBJECTS_DIR   = ../generated/obj/
 SOURCES       = UIManager.cpp \
 		dialogs/ArrayDialog.cpp \
 		dialogs/DataTypeDialog.cpp \
+		dialogs/FormatDialog.cpp \
 		dialogs/NameEntryDialog.cpp \
 		dialogs/ObjectTypeDialog.cpp \
 		screens/MainScreen.cpp \
@@ -64,11 +65,12 @@ SOURCES       = UIManager.cpp \
 		widgets/PacketEditor.cpp \
 		widgets/SettingsWidget.cpp \
 		widgets/SnackBar.cpp \
-		widgets/SplashScreen.cpp \
+		screens/SplashScreen.cpp \
 		widgets/Widget.cpp qrc_res.cpp \
 		../generated/moc/moc_UIManager.cpp \
 		../generated/moc/moc_ArrayDialog.cpp \
 		../generated/moc/moc_DataTypeDialog.cpp \
+		../generated/moc/moc_FormatDialog.cpp \
 		../generated/moc/moc_NameEntryDialog.cpp \
 		../generated/moc/moc_ObjectTypeDialog.cpp \
 		../generated/moc/moc_MainScreen.cpp \
@@ -83,6 +85,7 @@ SOURCES       = UIManager.cpp \
 OBJECTS       = ../generated/obj/UIManager.o \
 		../generated/obj/ArrayDialog.o \
 		../generated/obj/DataTypeDialog.o \
+		../generated/obj/FormatDialog.o \
 		../generated/obj/NameEntryDialog.o \
 		../generated/obj/ObjectTypeDialog.o \
 		../generated/obj/MainScreen.o \
@@ -98,6 +101,7 @@ OBJECTS       = ../generated/obj/UIManager.o \
 		../generated/obj/moc_UIManager.o \
 		../generated/obj/moc_ArrayDialog.o \
 		../generated/obj/moc_DataTypeDialog.o \
+		../generated/obj/moc_FormatDialog.o \
 		../generated/obj/moc_NameEntryDialog.o \
 		../generated/obj/moc_ObjectTypeDialog.o \
 		../generated/obj/moc_MainScreen.o \
@@ -284,6 +288,7 @@ DIST          = /Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
 		ui.pro UIManager.h \
 		dialogs/ArrayDialog.h \
 		dialogs/DataTypeDialog.h \
+		dialogs/FormatDialog.h \
 		dialogs/NameEntryDialog.h \
 		dialogs/ObjectTypeDialog.h \
 		screens/MainScreen.h \
@@ -293,10 +298,11 @@ DIST          = /Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
 		widgets/PacketEditor.h \
 		widgets/SettingsWidget.h \
 		widgets/SnackBar.h \
-		widgets/SplashScreen.h \
+		screens/SplashScreen.h \
 		widgets/Widget.h UIManager.cpp \
 		dialogs/ArrayDialog.cpp \
 		dialogs/DataTypeDialog.cpp \
+		dialogs/FormatDialog.cpp \
 		dialogs/NameEntryDialog.cpp \
 		dialogs/ObjectTypeDialog.cpp \
 		screens/MainScreen.cpp \
@@ -306,7 +312,7 @@ DIST          = /Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
 		widgets/PacketEditor.cpp \
 		widgets/SettingsWidget.cpp \
 		widgets/SnackBar.cpp \
-		widgets/SplashScreen.cpp \
+		screens/SplashScreen.cpp \
 		widgets/Widget.cpp
 QMAKE_TARGET  = ui
 DESTDIR       = ../lib/
@@ -725,8 +731,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../resources/res.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents UIManager.h dialogs/ArrayDialog.h dialogs/DataTypeDialog.h dialogs/NameEntryDialog.h dialogs/ObjectTypeDialog.h screens/MainScreen.h widgets/CaptureWidget.h widgets/ExplorerWidget.h widgets/InspectorWidget.h widgets/PacketEditor.h widgets/SettingsWidget.h widgets/SnackBar.h widgets/SplashScreen.h widgets/Widget.h $(DISTDIR)/
-	$(COPY_FILE) --parents UIManager.cpp dialogs/ArrayDialog.cpp dialogs/DataTypeDialog.cpp dialogs/NameEntryDialog.cpp dialogs/ObjectTypeDialog.cpp screens/MainScreen.cpp widgets/CaptureWidget.cpp widgets/ExplorerWidget.cpp widgets/InspectorWidget.cpp widgets/PacketEditor.cpp widgets/SettingsWidget.cpp widgets/SnackBar.cpp widgets/SplashScreen.cpp widgets/Widget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents UIManager.h dialogs/ArrayDialog.h dialogs/DataTypeDialog.h dialogs/FormatDialog.h dialogs/NameEntryDialog.h dialogs/ObjectTypeDialog.h screens/MainScreen.h widgets/CaptureWidget.h widgets/ExplorerWidget.h widgets/InspectorWidget.h widgets/PacketEditor.h widgets/SettingsWidget.h widgets/SnackBar.h screens/SplashScreen.h widgets/Widget.h $(DISTDIR)/
+	$(COPY_FILE) --parents UIManager.cpp dialogs/ArrayDialog.cpp dialogs/DataTypeDialog.cpp dialogs/FormatDialog.cpp dialogs/NameEntryDialog.cpp dialogs/ObjectTypeDialog.cpp screens/MainScreen.cpp widgets/CaptureWidget.cpp widgets/ExplorerWidget.cpp widgets/InspectorWidget.cpp widgets/PacketEditor.cpp widgets/SettingsWidget.cpp widgets/SnackBar.cpp screens/SplashScreen.cpp widgets/Widget.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -759,8 +765,21 @@ compiler_rcc_clean:
 qrc_res.cpp: ../resources/res.qrc \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/rcc \
 		../resources/close.png \
+		../resources/ok.png \
+		../resources/save.png \
+		../resources/stop.png \
+		../resources/camera.png \
+		../resources/packets.png \
 		../resources/file.png \
+		../resources/edit.png \
+		../resources/filter.png \
+		../resources/add.png \
+		../resources/trash.png \
 		../resources/ethernet.png \
+		../resources/start.png \
+		../resources/clear.png \
+		../resources/view.png \
+		../resources/info.png \
 		../resources/folder.png
 	/Users/prinz/Qt/5.13.0/clang_64/bin/rcc -name res ../resources/res.qrc -o qrc_res.cpp
 
@@ -770,9 +789,9 @@ compiler_moc_predefs_clean:
 ../generated/moc/moc_predefs.h: /Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o ../generated/moc/moc_predefs.h /Users/prinz/Qt/5.13.0/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: ../generated/moc/moc_UIManager.cpp ../generated/moc/moc_ArrayDialog.cpp ../generated/moc/moc_DataTypeDialog.cpp ../generated/moc/moc_NameEntryDialog.cpp ../generated/moc/moc_ObjectTypeDialog.cpp ../generated/moc/moc_MainScreen.cpp ../generated/moc/moc_CaptureWidget.cpp ../generated/moc/moc_ExplorerWidget.cpp ../generated/moc/moc_InspectorWidget.cpp ../generated/moc/moc_PacketEditor.cpp ../generated/moc/moc_SettingsWidget.cpp ../generated/moc/moc_SnackBar.cpp ../generated/moc/moc_SplashScreen.cpp ../generated/moc/moc_Widget.cpp
+compiler_moc_header_make_all: ../generated/moc/moc_UIManager.cpp ../generated/moc/moc_ArrayDialog.cpp ../generated/moc/moc_DataTypeDialog.cpp ../generated/moc/moc_FormatDialog.cpp ../generated/moc/moc_NameEntryDialog.cpp ../generated/moc/moc_ObjectTypeDialog.cpp ../generated/moc/moc_MainScreen.cpp ../generated/moc/moc_CaptureWidget.cpp ../generated/moc/moc_ExplorerWidget.cpp ../generated/moc/moc_InspectorWidget.cpp ../generated/moc/moc_PacketEditor.cpp ../generated/moc/moc_SettingsWidget.cpp ../generated/moc/moc_SnackBar.cpp ../generated/moc/moc_SplashScreen.cpp ../generated/moc/moc_Widget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) ../generated/moc/moc_UIManager.cpp ../generated/moc/moc_ArrayDialog.cpp ../generated/moc/moc_DataTypeDialog.cpp ../generated/moc/moc_NameEntryDialog.cpp ../generated/moc/moc_ObjectTypeDialog.cpp ../generated/moc/moc_MainScreen.cpp ../generated/moc/moc_CaptureWidget.cpp ../generated/moc/moc_ExplorerWidget.cpp ../generated/moc/moc_InspectorWidget.cpp ../generated/moc/moc_PacketEditor.cpp ../generated/moc/moc_SettingsWidget.cpp ../generated/moc/moc_SnackBar.cpp ../generated/moc/moc_SplashScreen.cpp ../generated/moc/moc_Widget.cpp
+	-$(DEL_FILE) ../generated/moc/moc_UIManager.cpp ../generated/moc/moc_ArrayDialog.cpp ../generated/moc/moc_DataTypeDialog.cpp ../generated/moc/moc_FormatDialog.cpp ../generated/moc/moc_NameEntryDialog.cpp ../generated/moc/moc_ObjectTypeDialog.cpp ../generated/moc/moc_MainScreen.cpp ../generated/moc/moc_CaptureWidget.cpp ../generated/moc/moc_ExplorerWidget.cpp ../generated/moc/moc_InspectorWidget.cpp ../generated/moc/moc_PacketEditor.cpp ../generated/moc/moc_SettingsWidget.cpp ../generated/moc/moc_SnackBar.cpp ../generated/moc/moc_SplashScreen.cpp ../generated/moc/moc_Widget.cpp
 ../generated/moc/moc_UIManager.cpp: UIManager.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
@@ -786,8 +805,11 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
 	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib UIManager.h -o ../generated/moc/moc_UIManager.cpp
@@ -839,6 +861,19 @@ compiler_moc_header_clean:
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
 	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/DataTypeDialog.h -o ../generated/moc/moc_DataTypeDialog.cpp
+
+../generated/moc/moc_FormatDialog.cpp: dialogs/FormatDialog.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../generated/moc/moc_predefs.h \
+		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/FormatDialog.h -o ../generated/moc/moc_FormatDialog.cpp
 
 ../generated/moc/moc_NameEntryDialog.cpp: dialogs/NameEntryDialog.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
@@ -896,8 +931,13 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
 		widgets/ExplorerWidget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
@@ -931,18 +971,21 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
 		../types/ArrayTypeObject.h \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/QDomDocument \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/qdom.h \
 		widgets/CaptureWidget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTableWidget \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtablewidget.h \
 		widgets/InspectorWidget.h \
+		dialogs/FormatDialog.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QToolButton \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbutton.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QStringList \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDial \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdial.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QProgressBar \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
 	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib screens/MainScreen.h -o ../generated/moc/moc_MainScreen.cpp
@@ -1001,8 +1044,11 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QSize \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
 	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/ExplorerWidget.h -o ../generated/moc/moc_ExplorerWidget.cpp
@@ -1011,6 +1057,25 @@ compiler_moc_header_clean:
 		widgets/Widget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
+		dialogs/FormatDialog.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTreeWidget \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtreewidget.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTreeWidgetItem \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/QDomDocument \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/qdom.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
 	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/InspectorWidget.h -o ../generated/moc/moc_InspectorWidget.cpp
@@ -1076,8 +1141,13 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
 	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/SettingsWidget.h -o ../generated/moc/moc_SettingsWidget.cpp
@@ -1092,11 +1162,13 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
 	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/SnackBar.h -o ../generated/moc/moc_SnackBar.cpp
 
-../generated/moc/moc_SplashScreen.cpp: widgets/SplashScreen.h \
+../generated/moc/moc_SplashScreen.cpp: screens/SplashScreen.h \
 		widgets/Widget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
@@ -1108,7 +1180,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/SplashScreen.h -o ../generated/moc/moc_SplashScreen.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib screens/SplashScreen.h -o ../generated/moc/moc_SplashScreen.cpp
 
 ../generated/moc/moc_Widget.cpp: widgets/Widget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
@@ -1148,8 +1220,11 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		screens/MainScreen.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
@@ -1162,6 +1237,8 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
 		widgets/ExplorerWidget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
@@ -1195,21 +1272,22 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
 		../types/ArrayTypeObject.h \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/QDomDocument \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/qdom.h \
 		widgets/CaptureWidget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTableWidget \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtablewidget.h \
 		widgets/InspectorWidget.h \
+		dialogs/FormatDialog.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QToolButton \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbutton.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QStringList \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
-		widgets/SplashScreen.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDial \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdial.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QProgressBar \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
+		screens/SplashScreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/UIManager.o UIManager.cpp
 
 ../generated/obj/ArrayDialog.o: dialogs/ArrayDialog.cpp dialogs/ArrayDialog.h \
@@ -1247,8 +1325,11 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/ArrayDialog.o dialogs/ArrayDialog.cpp
@@ -1284,11 +1365,39 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/DataTypeDialog.o dialogs/DataTypeDialog.cpp
+
+../generated/obj/FormatDialog.o: dialogs/FormatDialog.cpp dialogs/FormatDialog.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../engine/Worker.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../engine/DataStore.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QSize \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/FormatDialog.o dialogs/FormatDialog.cpp
 
 ../generated/obj/NameEntryDialog.o: dialogs/NameEntryDialog.cpp dialogs/NameEntryDialog.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
@@ -1309,8 +1418,11 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		UIManager.h \
 		widgets/Widget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
@@ -1340,8 +1452,11 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		UIManager.h \
@@ -1374,8 +1489,13 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
 		widgets/ExplorerWidget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
@@ -1409,21 +1529,26 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
 		../types/ArrayTypeObject.h \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/QDomDocument \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/qdom.h \
 		widgets/CaptureWidget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTableWidget \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtablewidget.h \
 		widgets/InspectorWidget.h \
+		dialogs/FormatDialog.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QToolButton \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbutton.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QStringList \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDial \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdial.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QProgressBar \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
-		UIManager.h
+		UIManager.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/MainScreen.o screens/MainScreen.cpp
 
 ../generated/obj/CaptureWidget.o: widgets/CaptureWidget.cpp widgets/CaptureWidget.h \
@@ -1441,7 +1566,24 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QHeaderView \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qheaderview.h \
+		UIManager.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../engine/Worker.h \
+		../engine/DataStore.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QSize \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/CaptureWidget.o widgets/CaptureWidget.cpp
 
 ../generated/obj/ExplorerWidget.o: widgets/ExplorerWidget.cpp widgets/ExplorerWidget.h \
@@ -1480,8 +1622,11 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QSize \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMenu \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QAction \
@@ -1492,15 +1637,58 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		UIManager.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/ExplorerWidget.o widgets/ExplorerWidget.cpp
 
 ../generated/obj/InspectorWidget.o: widgets/InspectorWidget.cpp widgets/InspectorWidget.h \
 		widgets/Widget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
+		dialogs/FormatDialog.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTreeWidget \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtreewidget.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTreeWidgetItem \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/QDomDocument \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/qdom.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		UIManager.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../engine/Worker.h \
+		../engine/DataStore.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QSize \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
+		../types/Format.h \
+		../types/TypeObject.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../types/Object.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../types/Decimal.h \
+		../types/Binary.h \
+		../types/ASCII.h \
+		../types/HexaDecimal.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/InspectorWidget.o widgets/InspectorWidget.cpp
 
 ../generated/obj/PacketEditor.o: widgets/PacketEditor.cpp widgets/PacketEditor.h \
@@ -1551,6 +1739,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMenu \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
@@ -1578,9 +1767,16 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
-		UIManager.h
+		../inc/EthHeader.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		UIManager.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/SettingsWidget.o widgets/SettingsWidget.cpp
 
 ../generated/obj/SnackBar.o: widgets/SnackBar.cpp widgets/SnackBar.h \
@@ -1592,10 +1788,25 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		UIManager.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../engine/Worker.h \
+		../engine/DataStore.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QSize \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../inc/EthHeader.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/SnackBar.o widgets/SnackBar.cpp
 
-../generated/obj/SplashScreen.o: widgets/SplashScreen.cpp widgets/SplashScreen.h \
+../generated/obj/SplashScreen.o: screens/SplashScreen.cpp screens/SplashScreen.h \
 		widgets/Widget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
@@ -1616,14 +1827,17 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers/QPainter \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers/qpainter.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		UIManager.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/SplashScreen.o widgets/SplashScreen.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/SplashScreen.o screens/SplashScreen.cpp
 
 ../generated/obj/Widget.o: widgets/Widget.cpp widgets/Widget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
@@ -1641,6 +1855,9 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ../generated/obj/moc_DataTypeDialog.o: ../generated/moc/moc_DataTypeDialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/moc_DataTypeDialog.o ../generated/moc/moc_DataTypeDialog.cpp
+
+../generated/obj/moc_FormatDialog.o: ../generated/moc/moc_FormatDialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/moc_FormatDialog.o ../generated/moc/moc_FormatDialog.cpp
 
 ../generated/obj/moc_NameEntryDialog.o: ../generated/moc/moc_NameEntryDialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/moc_NameEntryDialog.o ../generated/moc/moc_NameEntryDialog.cpp

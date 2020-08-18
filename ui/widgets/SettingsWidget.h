@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include "Worker.h"
+#include <QTextEdit>
 class SettingsWidget : public Widget
 {
     Q_OBJECT
@@ -14,10 +15,9 @@ private:
     QGridLayout *innerLayout;
     QVBoxLayout *mainLayout;
     QLabel *selectInterfaceLabel;
-    QLabel *selectEndianLabel;
     QFrame *mainFrame;
     QComboBox *interfaceNames;
-    QComboBox *endianNames;
+    QTextEdit *infoEdit;
     Worker *worker;
 public:
     explicit SettingsWidget(Worker *worker,QWidget *parent=nullptr);
@@ -33,7 +33,9 @@ signals:
     void sigFetchInterfaceNames();
     void sigInterfaceSelected(QString name);
 private slots:
+    void slotEnable(bool enable);
     void slotAddInterfaceNames(QStringList interfaceNameList);
+    void slotDisplayInterfaceDetails(const QStringList list);
 };
 
 #endif // SETTINGSWIDGET_H

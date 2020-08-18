@@ -8,8 +8,19 @@ DESTDIR = ../lib
 INCLUDEPATH += .
 MOC_DIR = ../generated/moc
 OBJECTS_DIR = ../generated/obj
+CONFIG+=sdk_no_version_check
 
 
 # Input
-HEADERS += ArrayTypeObject.h Object.h TypeObject.h
-SOURCES += ArrayTypeObject.cpp Object.cpp TypeObject.cpp
+HEADERS += ArrayTypeObject.h Object.h TypeObject.h \
+    ASCII.h \
+    Binary.h \
+    Decimal.h \
+    Format.h \
+    HexaDecimal.h
+SOURCES += ArrayTypeObject.cpp Object.cpp TypeObject.cpp \
+    ASCII.cpp \
+    Binary.cpp \
+    Decimal.cpp \
+    Format.cpp \
+    HexaDecimal.cpp

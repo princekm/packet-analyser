@@ -55,7 +55,8 @@ private:
 
 signals:
     void sigSnackBar(QString string,QColor color);
-    void  sigUpdateFileSize(int size);
+    void sigUpdateFileSize(int size);
+    void sigSaved(QString fileName);
 private slots:
     void slotSave();
 
