@@ -4,7 +4,9 @@
 #include "UIManager.h"
 #include "Worker.h"
 #include <stdio.h>
-
+#ifdef _WIN32
+#include <winsock2.h>
+#endif
 CaptureWidget::CaptureWidget(QWidget *parent):Widget(parent)
 {
     init();

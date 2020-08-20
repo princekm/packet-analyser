@@ -1,28 +1,10 @@
-<Object name="root" format="NA" size="39 B" >
+<Object name="root" format="NA" size="7 B" >
  <char name="msgid" format="DEFAULT" size="1 B" >
  </char>
  <short name="length" format="DEFAULT" size="2 B" >
  </short>
- <Object name="sub" format="NA" size="32 B" >
-  <floatArray name="td" format="DEFAULT" size="32 B" >
-   <float name="td[0]" format="DEFAULT" size="4 B" >
-   </float>
-   <float name="td[1]" format="DEFAULT" size="4 B" >
-   </float>
-   <float name="td[2]" format="DEFAULT" size="4 B" >
-   </float>
-   <float name="td[3]" format="DEFAULT" size="4 B" >
-   </float>
-   <float name="td[4]" format="DEFAULT" size="4 B" >
-   </float>
-   <float name="td[5]" format="DEFAULT" size="4 B" >
-   </float>
-   <float name="td[6]" format="DEFAULT" size="4 B" >
-   </float>
-   <float name="td[7]" format="DEFAULT" size="4 B" >
-   </float>
-  </floatArray>
+ <Object name="sub" format="NA" size="4 B" >
+  <long name="some" format="DEFAULT" size="4 B" >
+  </long>
  </Object>
- <int name="full" format="DEFAULT" size="4 B" >
- </int>
 </Object>

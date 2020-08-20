@@ -24,7 +24,7 @@ void NameEntryDialog::setType(const EntryType &value)
 }
 
 
-NameEntryDialog::NameEntryDialog(QWidget *parent)
+NameEntryDialog::NameEntryDialog(QWidget *parent):QDialog(parent)
 {
     init();
     setupConnections();

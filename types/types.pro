@@ -4,12 +4,12 @@
 
 TEMPLATE = lib
 TARGET = types
-DESTDIR = ../lib
+win32:DESTDIR = ../exe/win
+unix:DESTDIR = ../lib/unix
 INCLUDEPATH += .
 MOC_DIR = ../generated/moc
 OBJECTS_DIR = ../generated/obj
 CONFIG+=sdk_no_version_check
-
 
 # Input
 HEADERS += ArrayTypeObject.h Object.h TypeObject.h \

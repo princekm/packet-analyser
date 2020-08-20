@@ -118,14 +118,14 @@ void Worker::slotStartCapture()
     if(deviceHandle == NULL)
     {
         message=dataStore->getInterfaceName()+errbuf;
-        emit sigInfo(message,ERROR);
+        emit sigInfo(message,MSG_ERROR);
         return;
     }
     else
     {
         emit sigCaptureReady(dataStore->getInterfaceName());
     }
-    emit sigInfo("Starting capture for device:"+dataStore->getInterfaceName(),INFO);
+    emit sigInfo("Starting capture for device:"+dataStore->getInterfaceName(),MSG_INFO);
 
     /* Lets try and compile the program.. non-optimized */
     //    if(pcap_compile(deviceHandle,&fp,"port *",0,netp) == -1)
@@ -167,7 +167,7 @@ void Worker::slotSetFilter(QString filterString)
             strcpy(errbuf,pcap_geterr(deviceHandle));
             message+=message.fromLatin1(errbuf,strlen(errbuf));
             printf("%s\n",errbuf);
-            emit sigInfo(message,ERROR);
+            emit sigInfo(message,MSG_ERROR);
             emit sigFiltered(false);
 
             return;
@@ -177,7 +177,7 @@ void Worker::slotSetFilter(QString filterString)
         if(pcap_setfilter(deviceHandle,&fp) == -1)
         {
             message="Error Setting filter for device:"+dataStore->getInterfaceName();
-            emit sigInfo(message,ERROR);
+            emit sigInfo(message,MSG_ERROR);
             emit sigFiltered(false);
 
             return;
@@ -185,7 +185,7 @@ void Worker::slotSetFilter(QString filterString)
         else
         {
             message = "Filter applied Successfully";
-            emit sigInfo(message,INFO);
+            emit sigInfo(message,MSG_INFO);
             emit sigFiltered(true);
 
         }
@@ -193,7 +193,7 @@ void Worker::slotSetFilter(QString filterString)
     else
     {
         message="Error:Capture not started  for device:"+dataStore->getInterfaceName();
-        emit sigInfo(message,ERROR);
+        emit sigInfo(message,MSG_ERROR);
         emit sigFiltered(false);
 
 
@@ -205,7 +205,7 @@ void Worker::slotStopCapture()
 {
     if(deviceHandle!=nullptr){
         timer->stop();
-        emit sigInfo("Stopping capture for device:"+dataStore->getInterfaceName(),INFO);
+        emit sigInfo("Stopping capture for device:"+dataStore->getInterfaceName(),MSG_INFO);
         pcap_close(deviceHandle);
         deviceHandle=nullptr;
     }
@@ -239,7 +239,7 @@ void Worker::slotFetchDeviceDetails()
     struct in_addr address; /* Used for both ip & subnet */
     dev=dataStore->getInterfaceName().toStdString().c_str();
     for(d=alldevs;d;d=d->next){
-        if(std::strcmp(d->name,dev)==0)
+        if(strcmp(d->name,dev)==0)
         {
             list<<QString(d->name);
             list<<QString(d->description);

@@ -5,18 +5,23 @@
 QT += widgets xml
 TEMPLATE = lib
 TARGET = ui
-DESTDIR = ../lib
+win32:DESTDIR = ../exe/win
+unix:DESTDIR = ../lib/unix
+
 INCLUDEPATH += . \
                 ../inc \
                 ../types \
+                ../engine \
                 widgets \
                 screens  \
-                dialogs
+                dialogs \
+win32:INCLUDEPATH += ../pcap_win ../pcap_win/pcap
+unix:INCLUDEPATH += ../pcap_linux
+
 
 MOC_DIR = ../generated/moc
 OBJECTS_DIR = ../generated/obj
 CONFIG+=sdk_no_version_check
-
 # Input
 HEADERS += UIManager.h \
            dialogs/ArrayDialog.h \
@@ -49,19 +54,13 @@ SOURCES += UIManager.cpp \
            screens/SplashScreen.cpp \
            widgets/Widget.cpp
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../lib/release/ -lengine.1.0.0
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../lib/debug/ -lengine.1.0.0
-else:unix: LIBS += -L$$PWD/../lib/ -lengine.1.0.0
+win32: LIBS += -L$$PWD/../exe/win/ -lengine
+unix: LIBS += -L$$PWD/../lib/unix/ -lengine
+win32: LIBS += -L$$PWD/../exe/win/ -ltypes
+unix: LIBS += -L$$PWD/../lib/unix/ -ltypes
+win32: LIBS += -L$$PWD/exe/win/ -lwsock32
 
-INCLUDEPATH += $$PWD/../engine
-DEPENDPATH += $$PWD/../engine
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../lib/release/ -ltypes.1.0.0
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../lib/debug/ -ltypes.1.0.0
-else:unix: LIBS += -L$$PWD/../lib/ -ltypes.1.0.0
-
-INCLUDEPATH += $$PWD/../
-DEPENDPATH += $$PWD/../
 
 RESOURCES += \
     ../resources/res.qrc

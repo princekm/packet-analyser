@@ -3,28 +3,23 @@
 ######################################################################
 
 TEMPLATE = lib
-DESTDIR = ../lib
+win32:DESTDIR = ../exe/win
+unix:DESTDIR = ../lib/unix
 TARGET = engine
 MOC_DIR = ../generated/moc
 OBJECTS_DIR = ../generated/obj
 INCLUDEPATH += .    \
                 ../inc \
-                ../pcap
+win32:INCLUDEPATH += ../pcap_win ../pcap_win/pcap
+unix:INCLUDEPATH += ../pcap_linux
 
 CONFIG+=sdk_no_version_check
-
 HEADERS += DataStore.h Worker.h
 SOURCES += DataStore.cpp Worker.cpp
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../lib/release/ -lpcap
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../lib/debug/ -lpcap
-else:unix: LIBS += -L$$PWD/../lib/ -lpcap
+win32:LIBS += -L$$PWD/../lib/win -lwpcap
+win32:LIBS += -L$$PWD/../lib/win -lPacket
 
-INCLUDEPATH += $$PWD/../pcap
-DEPENDPATH += $$PWD/../pcap
+unix: LIBS += -L$$PWD/../lib/ -lpcap
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../lib/release/libpcap.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../lib/debug/libpcap.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../lib/release/pcap.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../lib/debug/pcap.lib
-else:unix: PRE_TARGETDEPS += $$PWD/../lib/libpcap.a
+

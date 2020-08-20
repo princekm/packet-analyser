@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include "DataStore.h"
-#include "pcap.h"
+#include <pcap.h>
 #include <QTimer>
 #include "EthHeader.h"
 
@@ -24,7 +24,7 @@ private:
     QString getIPv4Address(bpf_u_int32 ip_raw);
     void setupConnections();
 public:
-    enum MessageType{ERROR,INFO};
+    enum MessageType{MSG_ERROR,MSG_INFO};
 
     explicit Worker(QObject *parent = nullptr);
     ~Worker();

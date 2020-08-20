@@ -37,6 +37,7 @@ void MainScreen::init()
     heading->layout()->addWidget(indicator);
     indicator->setRange(0,359);
     indicator->setValue(0);
+    indicator->setTextVisible(false);
     indicator->hide();
     // indicator->setWrapping(true);
     indicator->setFixedSize(headingSize.height()*5,headingSize.height());
@@ -187,14 +188,14 @@ void MainScreen::slotEnable(bool enable)
     if(!enable)
     {
         indicator->setValue(0);
-        heading->setText("Capturing");
+      //  heading->setText("Capturing");
         indicator->show();
     }
     else
     {
         indicator->hide();
-        heading->setText("");
-        heading->repaint();
+      //  heading->setText("");
+     //   heading->repaint();
     }
 }
 
@@ -206,9 +207,9 @@ void MainScreen::slotRemoveCapturesTab()
 
 void MainScreen::slotProcessWorkerInfo(QString message, Worker::MessageType type)
 {
-    if(type==Worker::INFO)
+    if(type==Worker::MSG_INFO)
         emit sigSnackBar(message,UIManager::Resources::NOTIFY_COLOR);
-    else if(type==Worker::ERROR)
+    else if(type==Worker::MSG_ERROR)
         emit sigSnackBar(message,UIManager::Resources::ERROR_COLOR);
 
 }
