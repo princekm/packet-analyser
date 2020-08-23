@@ -17,7 +17,7 @@ private:
     QLabel *selectInterfaceLabel;
     QFrame *mainFrame;
     QComboBox *interfaceNames;
-    QTextEdit *infoEdit;
+    QLabel *infoEdit;
     Worker *worker;
 public:
     explicit SettingsWidget(Worker *worker,QWidget *parent=nullptr);

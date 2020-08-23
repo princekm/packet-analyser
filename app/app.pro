@@ -6,7 +6,11 @@ CONFIG+=sdk_no_version_check
 TEMPLATE = app
 DESTDIR = ../
 CONFIG -= app_bundle
-TARGET = exe/win/PacketAnalyser
+
+win32:TARGET = exe/win/PacketAnalyser
+unix:!macx:TARGET = exe/linux/PacketAnalyser
+macx:TARGET= exe/mac/PacketAnalyser
+
 INCLUDEPATH += . \
             ../inc \
             ../ui/ \
@@ -14,8 +18,9 @@ INCLUDEPATH += . \
             ../ui/screens \
             ../engine \
 
-win32:INCLUDEPATH += ../pcap_win ../pcap_win/pcap
-unix:INCLUDEPATH += ../pcap_linux
+win32:INCLUDEPATH += ../pcap/pcap_win ../pcap/pcap_win/pcap
+unix:!macx:INCLUDEPATH += ../pcap/pcap_linux
+macx:INCLUDEPATH += ../pcap/pcap_mac
 
 
 
@@ -27,7 +32,12 @@ SOURCES += AppManager.cpp main.cpp
 
 
 win32: LIBS += -L$$PWD/../exe/win/ -lengine
-unix: LIBS += -L$$PWD/../lib/unix/ -lengine
 win32: LIBS += -L$$PWD/../exe/win/ -lui
-unix: LIBS += -L$$PWD/../lib/unix/ -lui
 
+unix!macx: LIBS += -L$$PWD/../lib/linux/ -lengine
+unix!macx: LIBS += -L$$PWD/../lib/linux/ -lengine
+unix!macx: LIBS += -L$$PWD/../lib/linux/ -lui
+
+macx: LIBS += -L$$PWD/../lib/mac/ -lengine
+macx: LIBS += -L$$PWD/../lib/mac/ -lengine
+macx: LIBS += -L$$PWD/../lib/mac/ -lui

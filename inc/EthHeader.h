@@ -15,6 +15,7 @@
 #include <arpa/inet.h>
 #endif
 
+#pragma pack(push,1)
 /* default snap length (maximum bytes per packet to capture) */
 #define SNAP_LEN 1518
 
@@ -83,5 +84,5 @@ struct sniff_tcp {
         qint16 th_urp;                 /* urgent pointer */
 };
 
-
+#pragma pack(pop)
 #endif

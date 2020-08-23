@@ -8,8 +8,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(UIManager::Resources::APP_ICON));
-    QString paths="lib/win32";
-    a.addLibraryPath(paths);
+    QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
     a.setApplicationName("Packet Analyser");
     AppManager *appManager = new AppManager();
     appManager->start();

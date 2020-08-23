@@ -1,5 +1,5 @@
-#ifndef PACKETDIALOG_H
-#define PACKETDIALOG_H
+#ifndef PACKETEDITOR_H
+#define PACKETEDITOR_H
 #include <QDialog>
 #include <QLabel>
 #include <QVBoxLayout>

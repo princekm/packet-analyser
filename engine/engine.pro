@@ -4,22 +4,28 @@
 
 TEMPLATE = lib
 win32:DESTDIR = ../exe/win
-unix:DESTDIR = ../lib/unix
+unix!macx:DESTDIR = ../lib/linux
+macx:DESTDIR = ../lib/mac
+
 TARGET = engine
 MOC_DIR = ../generated/moc
 OBJECTS_DIR = ../generated/obj
 INCLUDEPATH += .    \
                 ../inc \
-win32:INCLUDEPATH += ../pcap_win ../pcap_win/pcap
-unix:INCLUDEPATH += ../pcap_linux
+win32:INCLUDEPATH += ../pcap/pcap_win ../pcap/pcap_win/pcap
+unix:!macx:INCLUDEPATH += ../pcap/pcap_linux
+macx:INCLUDEPATH += ../pcap/pcap_mac
 
 CONFIG+=sdk_no_version_check
-HEADERS += DataStore.h Worker.h
-SOURCES += DataStore.cpp Worker.cpp
+HEADERS += DataStore.h Worker.h \
+    Logger.h
+SOURCES += DataStore.cpp Worker.cpp \
+    Logger.cpp
 
 win32:LIBS += -L$$PWD/../lib/win -lwpcap
 win32:LIBS += -L$$PWD/../lib/win -lPacket
 
-unix: LIBS += -L$$PWD/../lib/ -lpcap
+macx: LIBS += -L$$PWD/../lib/mac -lpcap
+unix:!macx: LIBS += -L$$PWD/../lib/linux -lpcap-linux
 
 

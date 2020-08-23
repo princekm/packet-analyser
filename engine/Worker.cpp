@@ -2,7 +2,9 @@
 #include "QThread"
 #include <QDebug>
 #include "pcap.h"
-
+#include <QCoreApplication>
+#include <QFileInfo>
+#include <QDir>
 
 DataStore* Worker::dataStore=nullptr;
 
@@ -45,6 +47,7 @@ void Worker::slotFetchEthernetInterfaces()
 
 void Worker::init()
 {
+    createRootFolderIfNotExists();
     dataStore = new DataStore;
     timer = new QTimer;
     qRegisterMetaType<Worker::MessageType>("Worker::MessageType");
@@ -53,6 +56,38 @@ void Worker::init()
 
 
 }
+
+void Worker::createRootFolderIfNotExists()
+{
+    QString path=QCoreApplication::applicationDirPath();
+    QDir dir(path);
+    createFolder(dir,"Packets");
+    createFolder(dir,"Logs");
+
+
+
+
+
+}
+
+void Worker::createFolder(QDir dir, QString name)
+{
+    QFileInfo fileInfo(dir.path()+"/"+name);
+    if(fileInfo.exists())
+    {
+        if(!fileInfo.isDir())
+        {
+
+        }
+    }
+    else
+    {
+        dir.mkdir(name);
+        emit sigInfo("'"+name+"' folder is created",MSG_INFO);
+    }
+}
+
+
 
 QString Worker::getIPv4Address(bpf_u_int32 ip_raw)
 {
@@ -127,25 +162,8 @@ void Worker::slotStartCapture()
     }
     emit sigInfo("Starting capture for device:"+dataStore->getInterfaceName(),MSG_INFO);
 
-    /* Lets try and compile the program.. non-optimized */
-    //    if(pcap_compile(deviceHandle,&fp,"port *",0,netp) == -1)
-    //    {
-    //        message=dataStore->getInterfaceName()+errbuf;
-    //        emit sigInfo(message,ERROR);
-    //        return;
-    //    }
-
-    //    /* set the compiled program as the filter */
-    //    if(pcap_setfilter(deviceHandle,&fp) == -1)
-    //    {
-    //        message="Error Setting filter for device:"+dataStore->getInterfaceName();
-    //        emit sigInfo(message,ERROR);
-    //        return;
-    //    }
-
-    /* ... and loop */
     timer->start(500);
-    //    pcap_loop(deviceHandle,-1,startCaptureLoop,NULL);
+
 }
 
 void Worker::slotSetFilter(QString filterString)

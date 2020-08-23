@@ -11,19 +11,28 @@
 #include "PacketEditor.h"
 #include "CaptureWidget.h"
 #include "InspectorWidget.h"
+#include "Logger.h"
+#include "AboutDialog.h"
+#include "MenuBar.h"
 #include <QToolButton>
 #include <QStringList>
 #include <QDial>
 #include <QProgressBar>
+#include <QFont>
 class MainScreen :public Widget
 {
     Q_OBJECT
 public:
-    explicit MainScreen(Worker *worker,QWidget *parent=nullptr);
+    explicit MainScreen(Worker *worker,Logger *logger,QWidget *parent=nullptr);
     ~MainScreen();
 
     // Widget interface
 private:
+    Logger *logger;
+    QFont tabFont;
+    QFont menuFont;
+    MenuBar *menuBar;
+    AboutDialog *aboutDialog;
     QLabel *heading;
     QProgressBar *indicator;
     QStringList menuList;

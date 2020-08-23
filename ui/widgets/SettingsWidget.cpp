@@ -24,10 +24,10 @@ void SettingsWidget::init()
     selectInterfaceLabel = new QLabel("Interface:");
     selectInterfaceLabel->setAlignment(Qt::AlignVCenter|Qt::AlignRight);
     interfaceNames = new QComboBox;
-    infoEdit = new QTextEdit();
-    infoEdit->setAlignment(Qt::AlignCenter);
-    infoEdit->setFixedHeight(mainFrameSize.height());
-    infoEdit->setReadOnly(true);
+    infoEdit = new QLabel();
+    infoEdit->setAlignment(Qt::AlignHCenter);
+    infoEdit->setMinimumWidth(mainFrameSize.width()/2);
+    //infoEdit->setReadOnly(true);
     innerLayout = new QGridLayout(mainFrame);
     mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(mainFrame,2);
@@ -36,6 +36,7 @@ void SettingsWidget::init()
     innerLayout->addWidget(selectInterfaceLabel,0,0);
     innerLayout->addWidget(interfaceNames,0,1);
     mainLayout->addWidget(infoEdit,2);
+
 }
 
 void SettingsWidget::setUpConnections()
@@ -50,8 +51,9 @@ void SettingsWidget::setUpConnections()
 void SettingsWidget::applyStyle()
 {
     setStyleSheet("QLabel{color:black}");
-    infoEdit->setStyleSheet("QTextEdit{border:none;color:black}");
+    infoEdit->setStyleSheet("QTextEdit{border:none;color:black;background:white;text-align:center}");
     interfaceNames->setAttribute(Qt::WA_MacShowFocusRect, 0);
+
 
 }
 
@@ -73,10 +75,11 @@ void SettingsWidget::slotAddInterfaceNames(QStringList interfaceNameList)
 void SettingsWidget::slotDisplayInterfaceDetails(const QStringList list)
 {
     infoEdit->clear();
+    infoEdit->setText("Device Details:\n");
     for(QString string:list)
     {
 //        QString deviceString="Device:"+list.at(0);
-        infoEdit->append(string);
+        infoEdit->setText(infoEdit->text()+"\n"+string);
   //      infoEdit->setText(deviceString);
     }
 }

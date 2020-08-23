@@ -4,8 +4,12 @@
 
 TEMPLATE = lib
 TARGET = types
+
+
 win32:DESTDIR = ../exe/win
-unix:DESTDIR = ../lib/unix
+unix!macx:DESTDIR = ../lib/linux
+macx:DESTDIR = ../lib/mac
+
 INCLUDEPATH += .
 MOC_DIR = ../generated/moc
 OBJECTS_DIR = ../generated/obj

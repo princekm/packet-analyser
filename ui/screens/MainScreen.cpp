@@ -3,9 +3,10 @@
 #include <QApplication>
 #include "UIManager.h"
 #include <QDebug>
-MainScreen::MainScreen(Worker *worker, QWidget *parent)
+MainScreen::MainScreen(Worker *worker, Logger *logger, QWidget *parent):Widget(parent)
 {
     this->worker=worker;
+    this->logger=logger;
     init();
     setUpConnections();
     applyStyle();
@@ -27,10 +28,12 @@ void MainScreen::init()
 
     QSize wSize(UIManager::Size::windowSize);
     QSize headingSize(UIManager::Size::headingSize);
-    QSize snackSize(UIManager::Size::snackSize);
     QSize iconSize(headingSize.height(),headingSize.height());
     setMinimumSize(wSize);
 
+    menuBar = new MenuBar();
+    aboutDialog = new AboutDialog;
+    aboutDialog->hide();
     heading = new QLabel();
     indicator = new QProgressBar();
     heading->setLayout(new QHBoxLayout);
@@ -46,12 +49,26 @@ void MainScreen::init()
     heading->setAlignment(Qt::AlignCenter);
     settingsWidget = new SettingsWidget(worker);
     explorerWidget = new ExplorerWidget(worker);
-    captureWidget = new CaptureWidget();
+    captureWidget = new CaptureWidget(logger);
     packetEditorWidget = new PacketEditor();
     inspectorWidget = new InspectorWidget;
 
     tabWidget = new QTabWidget();
+
+    tabFont= tabWidget->font();
+    tabFont.setFamily("Monaco");
+    tabFont.setPointSize(12);
+    tabWidget->setFont(tabFont);
+
+    menuFont= tabWidget->font();
+    menuFont.setFamily("Monaco");
+    menuFont.setPointSize(12);
+    menuBar->setFont(menuFont);
+
     mainLayout = new QVBoxLayout(this);
+    mainLayout->setMenuBar(menuBar);
+    //  menuBar->init();
+
     menuList << "Settings" <<"Explorer"<<"Inspect"<<"Sniffer"<<"Editor"<<"Help";
     tabWidget->addTab(settingsWidget,menuList.at(0));
     tabWidget->addTab(explorerWidget,menuList.at(1));
@@ -73,6 +90,7 @@ void MainScreen::init()
 void MainScreen::setUpConnections()
 {
     connect(worker,SIGNAL(sigInfo(QString,Worker::MessageType)),this,SLOT(slotProcessWorkerInfo(QString,Worker::MessageType)));
+    connect(logger,SIGNAL(sigSnackBar(QString,Worker::MessageType)),this,SLOT(slotProcessWorkerInfo(QString,Worker::MessageType)));
 
     connect(worker,SIGNAL(sigCaptured(const struct pcap_pkthdr*,const unsigned char*)),captureWidget,SLOT(slotDisplayCaptured(const struct pcap_pkthdr* ,const unsigned char*)))  ;
 
@@ -85,6 +103,7 @@ void MainScreen::setUpConnections()
     connect(explorerWidget,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
     connect(packetEditorWidget,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
     connect(inspectorWidget,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
+    connect(menuBar,SIGNAL(sigSnackBar(QString,QColor)),snackBar,SLOT(slotSetText(QString,QColor)));
 
     connect(packetEditorWidget,SIGNAL(sigUpdateFileSize(int)),explorerWidget,SLOT(slotUpdateFileSize(int)));
 
@@ -113,6 +132,10 @@ void MainScreen::setUpConnections()
     connect(captureWidget,SIGNAL(sigEnable(bool)),this,SLOT(slotEnable(bool)));
     connect(captureWidget,SIGNAL(sigFilter(QString)),worker,SLOT(slotSetFilter(QString)));
     connect(worker,SIGNAL(sigFiltered(bool)),captureWidget,SLOT(slotFilterReady(bool)));
+    connect(menuBar,SIGNAL(sigShowAboutDialog()),aboutDialog,SLOT(exec()));
+    connect(menuBar,SIGNAL(sigSaveFile(QString)),logger,SLOT(slotSaveLog(QString)));
+    connect(captureWidget,SIGNAL(sigRowAvailable(bool)),menuBar,SLOT(slotEnableSave(bool)));
+
 }
 
 
@@ -188,15 +211,8 @@ void MainScreen::slotEnable(bool enable)
     if(!enable)
     {
         indicator->setValue(0);
-      //  heading->setText("Capturing");
-        indicator->show();
     }
-    else
-    {
-        indicator->hide();
-      //  heading->setText("");
-     //   heading->repaint();
-    }
+    indicator->setVisible(!enable);
 }
 
 void MainScreen::slotRemoveCapturesTab()

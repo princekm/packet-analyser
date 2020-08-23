@@ -97,6 +97,7 @@ void InspectorWidget::setUpConnections()
     connect(startStopButton,SIGNAL(clicked()),this,SLOT(slotStartStop()));
     connect(packetTypeBox,SIGNAL(currentTextChanged( QString )),this,SLOT(slotPopulateTree(QString)));
     connect(packetTree,SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int )),this,SLOT(slotItemDoubleClicked(QTreeWidgetItem *, int )));
+    connect(endiannessBox,SIGNAL(currentTextChanged(QString)),this,SLOT(slotNotifyEndianness(QString)));
 }
 
 void InspectorWidget::applyStyle()
@@ -117,6 +118,11 @@ void InspectorWidget::slotAddPacketTypes(QString packetType)
         packetTypeBox->setCurrentText(packetType);
     }
 
+}
+
+void InspectorWidget::slotNotifyEndianness(QString endianNess)
+{
+    emit sigSnackBar("Selected "+endianNess,UIManager::Resources::NOTIFY_COLOR);
 }
 void InspectorWidget::removeAllChildren(QTreeWidgetItem *item)
 {

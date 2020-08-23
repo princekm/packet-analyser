@@ -34,9 +34,10 @@ const QSize UIManager::Size::typeDialogSize=QSize(150,WIDGET_HEIGHT*5);
 const QSize UIManager::Size::arrayDialogSize=QSize(150,WIDGET_HEIGHT*6);
 const QSize UIManager::Size::objectDialogSize=QSize(150,WIDGET_HEIGHT*3);
 
-UIManager::UIManager(Worker *worker, QObject *parent) : QObject(parent)
+UIManager::UIManager(Worker *worker, Logger *logger, QObject *parent) : QObject(parent)
 {
     this->worker=worker;
+    this->logger=logger;
 }
 
 void UIManager::start()
@@ -59,7 +60,7 @@ void UIManager::slotReady()
 
 void UIManager::init()
 {
-    mainScreen = new MainScreen(worker);
+    mainScreen = new MainScreen(worker,logger);
     startScreen =  new SplashScreen();
 }
 

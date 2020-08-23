@@ -7,8 +7,9 @@
 #ifdef _WIN32
 #include <winsock2.h>
 #endif
-CaptureWidget::CaptureWidget(QWidget *parent):Widget(parent)
+CaptureWidget::CaptureWidget(Logger *logger, QWidget *parent):Widget(parent)
 {
+    this->logger=logger;
     init();
     setUpConnections();
     applyStyle();
@@ -108,6 +109,8 @@ CaptureWidget::~CaptureWidget()
 
 void CaptureWidget::init()
 {
+    packetDialog = new PacketDialog();
+    packetDialog->hide();
     table = new QTableWidget;
     busyTimer = new QTimer();
     table->setWordWrap(true);
@@ -130,6 +133,7 @@ void CaptureWidget::init()
 
     startStopButton = new QPushButton("Start");
     clearButton = new QPushButton("Clear");
+    clearButton->setEnabled(false);
 
     QIcon startIcon(UIManager::Resources::START_ICON);
     QIcon stopIcon(UIManager::Resources::STOP_ICON);
@@ -160,12 +164,21 @@ void CaptureWidget::setUpConnections()
     connect(filterEdit,SIGNAL(textEdited(QString)),this,SLOT(slotResetFilterEdit()));
     connect(clearButton,SIGNAL(clicked()),this,SLOT(slotClearTable()));
     connect(table->verticalHeader(), SIGNAL(sectionClicked(int)),this,SLOT(slotRowClicked(int)) );
+    connect(table,SIGNAL(cellDoubleClicked(int , int )),this,SLOT(slotPopupCellContents(int,int)));
+    connect(this,SIGNAL(sigLog(QStringList)),logger,SLOT(slotLog(QStringList)));
+    connect(this,SIGNAL(sigClear()),logger,SLOT(slotClear()));
+    connect(this,SIGNAL(sigPopup(QStringList)),packetDialog,SLOT(slotUpdateInfo(QStringList)));
 }
 
 void CaptureWidget::applyStyle()
 {
     setStyleSheet("QLabel{color:black}");
     table->setStyleSheet("QTableWidget{color:black;background:white}");
+}
+
+void CaptureWidget::slotSaveTable(QString fileName)
+{
+    qDebug()<<fileName+" Saving capture into file";
 }
 
 void CaptureWidget::slotSetInterfaceName(QString name)
@@ -203,6 +216,9 @@ void CaptureWidget::slotDisplayCaptured(const pcap_pkthdr *pkthdr,const  unsigne
 
     if(protocol == "TCP" || protocol == "UDP" )
     {
+        emit sigRowAvailable(true);
+        clearButton->setEnabled(true);
+
         QString payloadString;
         table->insertRow(0);
         QColor color;
@@ -227,19 +243,24 @@ void CaptureWidget::slotDisplayCaptured(const pcap_pkthdr *pkthdr,const  unsigne
         }
         auto model = table->model();
 
-        model->setData(model->index(0,3),payloadString);
-        model->setData(model->index(0,4),QString::number((payloadString.length()+1)/3));
-        model->setData(model->index(0,5),QString::number(pkthdr->ts.tv_usec));
+        QString payloadLength=QString::number((payloadString.length()+1)/3);
+        QString timeString=QString::number(pkthdr->ts.tv_usec);
         model->setData(model->index(0,0),srcIP);
         model->setData(model->index(0,1),destIP);
         model->setData(model->index(0,2),protocol);
+        model->setData(model->index(0,3),payloadString);
+        model->setData(model->index(0,4),payloadLength);
+        model->setData(model->index(0,5),timeString);
+
+        QStringList row;
+        row<<srcIP<<destIP<<protocol<<payloadString<<payloadLength<<timeString;
+        emit sigLog(row);
 
         for(int col=0;col<table->columnCount();++col)
         {
 
             table->item(0, col)->setBackground(color);
             table->item(0, col)->setForeground(Qt::white);
-
 
         }
     }
@@ -284,6 +305,9 @@ void CaptureWidget::slotStartStop()
 void CaptureWidget::slotClearTable()
 {
     table->setRowCount(0);
+    clearButton->setEnabled(false);
+    emit sigRowAvailable(false);
+    emit sigClear();
     slotSetPacketCount();
 
 }
@@ -317,8 +341,10 @@ void CaptureWidget::slotFilterReady(bool ok)
     }
 }
 
+
 void CaptureWidget::slotRowClicked(int row)
 {
+
 }
 
 void CaptureWidget::slotResetFilterEdit()
@@ -326,6 +352,25 @@ void CaptureWidget::slotResetFilterEdit()
     if(filterEdit->text().isEmpty())
     {
         filterEdit->setStyleSheet("background:#ffffff;color:black");
+
+    }
+}
+
+void CaptureWidget::slotPopupCellContents(int row, int col)
+{
+    if(row>=0&&col>=0)
+    {
+        QStringList list;
+        auto model = table->model();
+        list<<model->data(model->index(row,0)).toString();
+        list<<model->data(model->index(row,1)).toString();
+        list<<model->data(model->index(row,2)).toString();
+        list<<model->data(model->index(row,3)).toString();
+        list<<model->data(model->index(row,4)).toString();
+        list<<model->data(model->index(row,5)).toString();
+        emit sigPopup(list);
+        packetDialog->exec();
+
 
     }
 }

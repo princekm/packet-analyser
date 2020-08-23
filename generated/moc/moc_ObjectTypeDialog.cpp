@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'ObjectTypeDialog.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.14.2)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.13.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,7 +13,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'ObjectTypeDialog.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.14.2. It"
+#error "This file was generated using the moc from 5.13.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -96,7 +96,7 @@ void ObjectTypeDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
 }
 
 QT_INIT_METAOBJECT const QMetaObject ObjectTypeDialog::staticMetaObject = { {
-    QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
+    &QDialog::staticMetaObject,
     qt_meta_stringdata_ObjectTypeDialog.data,
     qt_meta_data_ObjectTypeDialog,
     qt_static_metacall,

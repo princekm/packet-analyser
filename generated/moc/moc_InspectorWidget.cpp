@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'InspectorWidget.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.14.2)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.13.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,7 +13,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'InspectorWidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.14.2. It"
+#error "This file was generated using the moc from 5.13.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_InspectorWidget_t {
-    QByteArrayData data[25];
-    char stringdata0[301];
+    QByteArrayData data[26];
+    char stringdata0[322];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,34 +40,35 @@ QT_MOC_LITERAL(4, 35, 18), // "sigRequestFileList"
 QT_MOC_LITERAL(5, 54, 11), // "sigSnackBar"
 QT_MOC_LITERAL(6, 66, 18), // "slotAddPacketTypes"
 QT_MOC_LITERAL(7, 85, 10), // "packetType"
-QT_MOC_LITERAL(8, 96, 21), // "slotDeletePacketTypes"
-QT_MOC_LITERAL(9, 118, 16), // "slotPopulateTree"
-QT_MOC_LITERAL(10, 135, 8), // "fileName"
-QT_MOC_LITERAL(11, 144, 18), // "slotUpdateFileList"
-QT_MOC_LITERAL(12, 163, 8), // "fileList"
-QT_MOC_LITERAL(13, 172, 11), // "slotPayload"
-QT_MOC_LITERAL(14, 184, 6), // "uchar*"
-QT_MOC_LITERAL(15, 191, 4), // "data"
-QT_MOC_LITERAL(16, 196, 3), // "len"
-QT_MOC_LITERAL(17, 200, 13), // "slotStartStop"
-QT_MOC_LITERAL(18, 214, 11), // "slotDisable"
-QT_MOC_LITERAL(19, 226, 21), // "slotItemDoubleClicked"
-QT_MOC_LITERAL(20, 248, 16), // "QTreeWidgetItem*"
-QT_MOC_LITERAL(21, 265, 4), // "item"
-QT_MOC_LITERAL(22, 270, 6), // "column"
-QT_MOC_LITERAL(23, 277, 16), // "slotChangeFormat"
-QT_MOC_LITERAL(24, 294, 6) // "format"
+QT_MOC_LITERAL(8, 96, 20), // "slotNotifyEndianness"
+QT_MOC_LITERAL(9, 117, 21), // "slotDeletePacketTypes"
+QT_MOC_LITERAL(10, 139, 16), // "slotPopulateTree"
+QT_MOC_LITERAL(11, 156, 8), // "fileName"
+QT_MOC_LITERAL(12, 165, 18), // "slotUpdateFileList"
+QT_MOC_LITERAL(13, 184, 8), // "fileList"
+QT_MOC_LITERAL(14, 193, 11), // "slotPayload"
+QT_MOC_LITERAL(15, 205, 6), // "uchar*"
+QT_MOC_LITERAL(16, 212, 4), // "data"
+QT_MOC_LITERAL(17, 217, 3), // "len"
+QT_MOC_LITERAL(18, 221, 13), // "slotStartStop"
+QT_MOC_LITERAL(19, 235, 11), // "slotDisable"
+QT_MOC_LITERAL(20, 247, 21), // "slotItemDoubleClicked"
+QT_MOC_LITERAL(21, 269, 16), // "QTreeWidgetItem*"
+QT_MOC_LITERAL(22, 286, 4), // "item"
+QT_MOC_LITERAL(23, 291, 6), // "column"
+QT_MOC_LITERAL(24, 298, 16), // "slotChangeFormat"
+QT_MOC_LITERAL(25, 315, 6) // "format"
 
     },
     "InspectorWidget\0sigInspect\0\0turnOn\0"
     "sigRequestFileList\0sigSnackBar\0"
     "slotAddPacketTypes\0packetType\0"
-    "slotDeletePacketTypes\0slotPopulateTree\0"
-    "fileName\0slotUpdateFileList\0fileList\0"
-    "slotPayload\0uchar*\0data\0len\0slotStartStop\0"
-    "slotDisable\0slotItemDoubleClicked\0"
-    "QTreeWidgetItem*\0item\0column\0"
-    "slotChangeFormat\0format"
+    "slotNotifyEndianness\0slotDeletePacketTypes\0"
+    "slotPopulateTree\0fileName\0slotUpdateFileList\0"
+    "fileList\0slotPayload\0uchar*\0data\0len\0"
+    "slotStartStop\0slotDisable\0"
+    "slotItemDoubleClicked\0QTreeWidgetItem*\0"
+    "item\0column\0slotChangeFormat\0format"
 };
 #undef QT_MOC_LITERAL
 
@@ -77,7 +78,7 @@ static const uint qt_meta_data_InspectorWidget[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -85,20 +86,21 @@ static const uint qt_meta_data_InspectorWidget[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   74,    2, 0x06 /* Public */,
-       4,    0,   77,    2, 0x06 /* Public */,
-       5,    2,   78,    2, 0x06 /* Public */,
+       1,    1,   79,    2, 0x06 /* Public */,
+       4,    0,   82,    2, 0x06 /* Public */,
+       5,    2,   83,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    1,   83,    2, 0x08 /* Private */,
-       8,    1,   86,    2, 0x08 /* Private */,
-       9,    1,   89,    2, 0x08 /* Private */,
-      11,    1,   92,    2, 0x08 /* Private */,
-      13,    2,   95,    2, 0x08 /* Private */,
-      17,    0,  100,    2, 0x08 /* Private */,
-      18,    1,  101,    2, 0x08 /* Private */,
-      19,    2,  104,    2, 0x08 /* Private */,
-      23,    1,  109,    2, 0x08 /* Private */,
+       6,    1,   88,    2, 0x08 /* Private */,
+       8,    1,   91,    2, 0x08 /* Private */,
+       9,    1,   94,    2, 0x08 /* Private */,
+      10,    1,   97,    2, 0x08 /* Private */,
+      12,    1,  100,    2, 0x08 /* Private */,
+      14,    2,  103,    2, 0x08 /* Private */,
+      18,    0,  108,    2, 0x08 /* Private */,
+      19,    1,  109,    2, 0x08 /* Private */,
+      20,    2,  112,    2, 0x08 /* Private */,
+      24,    1,  117,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool,    3,
@@ -107,14 +109,15 @@ static const uint qt_meta_data_InspectorWidget[] = {
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::QString,    7,
-    QMetaType::Void, QMetaType::QString,   10,
-    QMetaType::Void, QMetaType::QStringList,   12,
-    QMetaType::Void, 0x80000000 | 14, QMetaType::Int,   15,   16,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QStringList,   13,
+    QMetaType::Void, 0x80000000 | 15, QMetaType::Int,   16,   17,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Bool,    2,
-    QMetaType::Void, 0x80000000 | 20, QMetaType::Int,   21,   22,
-    QMetaType::Void, QMetaType::QString,   24,
+    QMetaType::Void, 0x80000000 | 21, QMetaType::Int,   22,   23,
+    QMetaType::Void, QMetaType::QString,   25,
 
        0        // eod
 };
@@ -129,14 +132,15 @@ void InspectorWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 1: _t->sigRequestFileList(); break;
         case 2: _t->sigSnackBar((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QColor(*)>(_a[2]))); break;
         case 3: _t->slotAddPacketTypes((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 4: _t->slotDeletePacketTypes((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 5: _t->slotPopulateTree((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 6: _t->slotUpdateFileList((*reinterpret_cast< QStringList(*)>(_a[1]))); break;
-        case 7: _t->slotPayload((*reinterpret_cast< uchar*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 8: _t->slotStartStop(); break;
-        case 9: _t->slotDisable((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 10: _t->slotItemDoubleClicked((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 11: _t->slotChangeFormat((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->slotNotifyEndianness((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 5: _t->slotDeletePacketTypes((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 6: _t->slotPopulateTree((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->slotUpdateFileList((*reinterpret_cast< QStringList(*)>(_a[1]))); break;
+        case 8: _t->slotPayload((*reinterpret_cast< uchar*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 9: _t->slotStartStop(); break;
+        case 10: _t->slotDisable((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 11: _t->slotItemDoubleClicked((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 12: _t->slotChangeFormat((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -166,7 +170,7 @@ void InspectorWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
 }
 
 QT_INIT_METAOBJECT const QMetaObject InspectorWidget::staticMetaObject = { {
-    QMetaObject::SuperData::link<Widget::staticMetaObject>(),
+    &Widget::staticMetaObject,
     qt_meta_stringdata_InspectorWidget.data,
     qt_meta_data_InspectorWidget,
     qt_static_metacall,
@@ -194,13 +198,13 @@ int InspectorWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 13)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }

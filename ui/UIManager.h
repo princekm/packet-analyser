@@ -4,11 +4,13 @@
 #include <QObject>
 #include "Widget.h"
 #include "Worker.h"
+#include "Logger.h"
 class UIManager : public QObject
 {
     Q_OBJECT
 private:
     Worker *worker;
+    Logger *logger;
     Widget *startScreen;
     Widget *mainScreen;
     void init();
@@ -56,7 +58,7 @@ public:
         static const QColor ERROR_COLOR;
 
     };
-    explicit UIManager(Worker *worker,QObject *parent = nullptr);
+    explicit UIManager(Worker *worker,Logger *logger,QObject *parent = nullptr);
     ~UIManager();
 
 signals:

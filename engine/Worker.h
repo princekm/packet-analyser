@@ -5,6 +5,7 @@
 #include "DataStore.h"
 #include <pcap.h>
 #include <QTimer>
+#include <QDir>
 #include "EthHeader.h"
 
 class Worker : public QObject
@@ -21,6 +22,9 @@ private:
 
 
     void init();
+    void createRootFolderIfNotExists();
+    void createFolder(QDir dir,QString name);
+
     QString getIPv4Address(bpf_u_int32 ip_raw);
     void setupConnections();
 public:
@@ -41,6 +45,7 @@ signals:
     void sigCaptured(const struct pcap_pkthdr* pkthdr,const unsigned char* packet);
     void sigEmitDeviceDetails(QStringList list);
 private slots:
+
     void slotParse();
     void slotLoad();
     void slotSetFilePath(QString path);

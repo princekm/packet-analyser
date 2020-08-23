@@ -55,6 +55,7 @@ signals:
     void sigSnackBar(QString,QColor);
 private slots:
     void slotAddPacketTypes(QString packetType);
+    void slotNotifyEndianness(QString);
     void slotDeletePacketTypes(QString packetType);
     void slotPopulateTree(QString fileName);
     void slotUpdateFileList(QStringList fileList);
