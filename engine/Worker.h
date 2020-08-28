@@ -48,7 +48,6 @@ private slots:
 
     void slotParse();
     void slotLoad();
-    void slotSetFilePath(QString path);
     void slotFetchEthernetInterfaces();
     void slotStartCapture();
     void slotSetFilter(QString filterString);

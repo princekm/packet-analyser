@@ -699,7 +699,10 @@ AppManager.o: AppManager.cpp AppManager.h \
 		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
 		../inc/EthHeader.h \
+		../engine/Logger.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QThread \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -727,7 +730,10 @@ main.o: main.cpp /Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers
 		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
 		../inc/EthHeader.h \
+		../engine/Logger.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QThread \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \

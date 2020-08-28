@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Worker_t {
-    QByteArrayData data[32];
-    char stringdata0[415];
+    QByteArrayData data[30];
+    char stringdata0[394];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -55,15 +55,13 @@ QT_MOC_LITERAL(19, 226, 20), // "sigEmitDeviceDetails"
 QT_MOC_LITERAL(20, 247, 4), // "list"
 QT_MOC_LITERAL(21, 252, 9), // "slotParse"
 QT_MOC_LITERAL(22, 262, 8), // "slotLoad"
-QT_MOC_LITERAL(23, 271, 15), // "slotSetFilePath"
-QT_MOC_LITERAL(24, 287, 4), // "path"
-QT_MOC_LITERAL(25, 292, 27), // "slotFetchEthernetInterfaces"
-QT_MOC_LITERAL(26, 320, 16), // "slotStartCapture"
-QT_MOC_LITERAL(27, 337, 13), // "slotSetFilter"
-QT_MOC_LITERAL(28, 351, 12), // "filterString"
-QT_MOC_LITERAL(29, 364, 15), // "slotStopCapture"
-QT_MOC_LITERAL(30, 380, 11), // "slotCapture"
-QT_MOC_LITERAL(31, 392, 22) // "slotFetchDeviceDetails"
+QT_MOC_LITERAL(23, 271, 27), // "slotFetchEthernetInterfaces"
+QT_MOC_LITERAL(24, 299, 16), // "slotStartCapture"
+QT_MOC_LITERAL(25, 316, 13), // "slotSetFilter"
+QT_MOC_LITERAL(26, 330, 12), // "filterString"
+QT_MOC_LITERAL(27, 343, 15), // "slotStopCapture"
+QT_MOC_LITERAL(28, 359, 11), // "slotCapture"
+QT_MOC_LITERAL(29, 371, 22) // "slotFetchDeviceDetails"
 
     },
     "Worker\0sigReady\0\0sigFiltered\0error\0"
@@ -74,8 +72,7 @@ QT_MOC_LITERAL(31, 392, 22) // "slotFetchDeviceDetails"
     "const pcap_pkthdr*\0pkthdr\0"
     "const unsigned char*\0packet\0"
     "sigEmitDeviceDetails\0list\0slotParse\0"
-    "slotLoad\0slotSetFilePath\0path\0"
-    "slotFetchEthernetInterfaces\0"
+    "slotLoad\0slotFetchEthernetInterfaces\0"
     "slotStartCapture\0slotSetFilter\0"
     "filterString\0slotStopCapture\0slotCapture\0"
     "slotFetchDeviceDetails"
@@ -88,7 +85,7 @@ static const uint qt_meta_data_Worker[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      18,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -96,26 +93,25 @@ static const uint qt_meta_data_Worker[] = {
        9,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,  104,    2, 0x06 /* Public */,
-       3,    1,  105,    2, 0x06 /* Public */,
-       5,    1,  108,    2, 0x06 /* Public */,
-       7,    1,  111,    2, 0x06 /* Public */,
-       9,    1,  114,    2, 0x06 /* Public */,
-      11,    0,  117,    2, 0x06 /* Public */,
-      12,    2,  118,    2, 0x06 /* Public */,
-      14,    2,  123,    2, 0x06 /* Public */,
-      19,    1,  128,    2, 0x06 /* Public */,
+       1,    0,   99,    2, 0x06 /* Public */,
+       3,    1,  100,    2, 0x06 /* Public */,
+       5,    1,  103,    2, 0x06 /* Public */,
+       7,    1,  106,    2, 0x06 /* Public */,
+       9,    1,  109,    2, 0x06 /* Public */,
+      11,    0,  112,    2, 0x06 /* Public */,
+      12,    2,  113,    2, 0x06 /* Public */,
+      14,    2,  118,    2, 0x06 /* Public */,
+      19,    1,  123,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      21,    0,  131,    2, 0x08 /* Private */,
-      22,    0,  132,    2, 0x08 /* Private */,
-      23,    1,  133,    2, 0x08 /* Private */,
-      25,    0,  136,    2, 0x08 /* Private */,
-      26,    0,  137,    2, 0x08 /* Private */,
-      27,    1,  138,    2, 0x08 /* Private */,
-      29,    0,  141,    2, 0x08 /* Private */,
-      30,    0,  142,    2, 0x08 /* Private */,
-      31,    0,  143,    2, 0x08 /* Private */,
+      21,    0,  126,    2, 0x08 /* Private */,
+      22,    0,  127,    2, 0x08 /* Private */,
+      23,    0,  128,    2, 0x08 /* Private */,
+      24,    0,  129,    2, 0x08 /* Private */,
+      25,    1,  130,    2, 0x08 /* Private */,
+      27,    0,  133,    2, 0x08 /* Private */,
+      28,    0,  134,    2, 0x08 /* Private */,
+      29,    0,  135,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -131,10 +127,9 @@ static const uint qt_meta_data_Worker[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   24,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   28,
+    QMetaType::Void, QMetaType::QString,   26,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -159,13 +154,12 @@ void Worker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 8: _t->sigEmitDeviceDetails((*reinterpret_cast< QStringList(*)>(_a[1]))); break;
         case 9: _t->slotParse(); break;
         case 10: _t->slotLoad(); break;
-        case 11: _t->slotSetFilePath((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 12: _t->slotFetchEthernetInterfaces(); break;
-        case 13: _t->slotStartCapture(); break;
-        case 14: _t->slotSetFilter((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 15: _t->slotStopCapture(); break;
-        case 16: _t->slotCapture(); break;
-        case 17: _t->slotFetchDeviceDetails(); break;
+        case 11: _t->slotFetchEthernetInterfaces(); break;
+        case 12: _t->slotStartCapture(); break;
+        case 13: _t->slotSetFilter((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 14: _t->slotStopCapture(); break;
+        case 15: _t->slotCapture(); break;
+        case 16: _t->slotFetchDeviceDetails(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -265,13 +259,13 @@ int Worker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 18)
+        if (_id < 17)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 18;
+        _id -= 17;
     }
     return _id;
 }

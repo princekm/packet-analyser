@@ -726,6 +726,8 @@ compiler_moc_header_clean:
 		../pcap/pcap_win/pcap/dlt.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
 		../inc/EthHeader.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
@@ -736,6 +738,26 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		Worker.h \
+		DataStore.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QSize \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		../pcap/pcap_win/pcap.h \
+		../pcap/pcap_win/pcap/pcap.h \
+		../pcap/pcap_win/pcap/funcattrs.h \
+		../pcap/pcap_win/pcap/compiler-tests.h \
+		../pcap/pcap_win/pcap/pcap-inttypes.h \
+		../pcap/pcap_win/pcap/socket.h \
+		../pcap/pcap_win/pcap/bpf.h \
+		../pcap/pcap_win/pcap/dlt.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		../inc/EthHeader.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
 	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib Logger.h -o ../generated/moc/moc_Logger.cpp
@@ -791,6 +813,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../pcap/pcap_win/pcap/dlt.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
 		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QThread \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
@@ -800,8 +824,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFileInfo \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfileinfo.h \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QCryptographicHash \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qcryptographichash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/Worker.o Worker.cpp
 
 ../generated/obj/Logger.o: Logger.cpp Logger.h \
@@ -809,8 +833,30 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		Worker.h \
+		DataStore.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QSize \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
+		../pcap/pcap_win/pcap.h \
+		../pcap/pcap_win/pcap/pcap.h \
+		../pcap/pcap_win/pcap/funcattrs.h \
+		../pcap/pcap_win/pcap/compiler-tests.h \
+		../pcap/pcap_win/pcap/pcap-inttypes.h \
+		../pcap/pcap_win/pcap/socket.h \
+		../pcap/pcap_win/pcap/bpf.h \
+		../pcap/pcap_win/pcap/dlt.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		../inc/EthHeader.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QCoreApplication \
+		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../generated/obj/Logger.o Logger.cpp
 
 ../generated/obj/moc_DataStore.o: ../generated/moc/moc_DataStore.cpp 

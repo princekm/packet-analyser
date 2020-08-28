@@ -19,7 +19,7 @@ void AboutDialog::init()
     label = new QLabel("Packet Analyser");
     headLayout = new QHBoxLayout();
     textEdit = new QTextEdit;
-    textEdit->setPlainText("Version 1.0");
+    textEdit->setPlainText("Version 1.0\nmd5:"+Worker::getDataStore()->getMd5Hash());
     iconButton = new QToolButton();
     textEdit->setReadOnly(true);
     iconButton->setIcon(QIcon(UIManager::Resources::APP_ICON));

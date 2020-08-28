@@ -5,6 +5,11 @@ QString DataStore::getInterfaceName() const
     return interfaceName;
 }
 
+void DataStore::setMD5Hash(QString hash)
+{
+    this->md5Hash=hash;
+}
+
 
 
 int DataStore::getSizeof(QString typeName)
@@ -25,6 +30,11 @@ QStringList DataStore::getFormatList() const
 }
 
 
+
+QString DataStore::getMd5Hash() const
+{
+    return md5Hash;
+}
 
 DataStore::DataStore(QObject *parent) : QObject(parent)
 {

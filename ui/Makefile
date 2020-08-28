@@ -17,7 +17,7 @@ CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -O2 -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I. -I../inc -I../types -I../engine -Iwidgets -Iscreens -Idialogs -Iwin32:INCLUDEPATH -I+= -I../pcap/pcap_win -I../pcap/pcap_win/pcap -I../pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I../generated/moc -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -F/Users/prinz/Qt/5.13.0/clang_64/lib
+INCPATH       = -I. -I. -I../inc -I../types -I../engine -Iwidgets -Iscreens -Idialogs -I../pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I../generated/moc -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -F/Users/prinz/Qt/5.13.0/clang_64/lib
 QMAKE         = /Users/prinz/Qt/5.13.0/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -830,14 +830,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -846,7 +839,7 @@ compiler_moc_header_clean:
 		../engine/Logger.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib UIManager.h -o ../generated/moc/moc_UIManager.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib UIManager.h -o ../generated/moc/moc_UIManager.cpp
 
 ../generated/moc/moc_AboutDialog.cpp: dialogs/AboutDialog.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
@@ -861,7 +854,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/AboutDialog.h -o ../generated/moc/moc_AboutDialog.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/AboutDialog.h -o ../generated/moc/moc_AboutDialog.cpp
 
 ../generated/moc/moc_ArrayDialog.cpp: dialogs/ArrayDialog.h \
 		dialogs/DataTypeDialog.h \
@@ -887,7 +880,7 @@ compiler_moc_header_clean:
 		../types/ArrayTypeObject.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/ArrayDialog.h -o ../generated/moc/moc_ArrayDialog.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/ArrayDialog.h -o ../generated/moc/moc_ArrayDialog.cpp
 
 ../generated/moc/moc_DataTypeDialog.cpp: dialogs/DataTypeDialog.h \
 		dialogs/ObjectTypeDialog.h \
@@ -909,7 +902,7 @@ compiler_moc_header_clean:
 		../types/TypeObject.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/DataTypeDialog.h -o ../generated/moc/moc_DataTypeDialog.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/DataTypeDialog.h -o ../generated/moc/moc_DataTypeDialog.cpp
 
 ../generated/moc/moc_FormatDialog.cpp: dialogs/FormatDialog.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
@@ -922,7 +915,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/FormatDialog.h -o ../generated/moc/moc_FormatDialog.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/FormatDialog.h -o ../generated/moc/moc_FormatDialog.cpp
 
 ../generated/moc/moc_NameEntryDialog.cpp: dialogs/NameEntryDialog.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
@@ -936,7 +929,7 @@ compiler_moc_header_clean:
 		../inc/Enum.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/NameEntryDialog.h -o ../generated/moc/moc_NameEntryDialog.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/NameEntryDialog.h -o ../generated/moc/moc_NameEntryDialog.cpp
 
 ../generated/moc/moc_ObjectTypeDialog.cpp: dialogs/ObjectTypeDialog.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
@@ -954,7 +947,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/ObjectTypeDialog.h -o ../generated/moc/moc_ObjectTypeDialog.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/ObjectTypeDialog.h -o ../generated/moc/moc_ObjectTypeDialog.cpp
 
 ../generated/moc/moc_PacketDialog.cpp: dialogs/PacketDialog.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
@@ -968,7 +961,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/PacketDialog.h -o ../generated/moc/moc_PacketDialog.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib dialogs/PacketDialog.h -o ../generated/moc/moc_PacketDialog.cpp
 
 ../generated/moc/moc_MainScreen.cpp: screens/MainScreen.h \
 		widgets/Widget.h \
@@ -996,14 +989,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1071,7 +1057,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers/qfont.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib screens/MainScreen.h -o ../generated/moc/moc_MainScreen.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib screens/MainScreen.h -o ../generated/moc/moc_MainScreen.cpp
 
 ../generated/moc/moc_CaptureWidget.cpp: widgets/CaptureWidget.h \
 		widgets/Widget.h \
@@ -1087,14 +1073,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		../engine/Logger.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
@@ -1120,7 +1099,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/CaptureWidget.h -o ../generated/moc/moc_CaptureWidget.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/CaptureWidget.h -o ../generated/moc/moc_CaptureWidget.cpp
 
 ../generated/moc/moc_ExplorerWidget.cpp: widgets/ExplorerWidget.h \
 		widgets/Widget.h \
@@ -1160,14 +1139,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1175,7 +1147,7 @@ compiler_moc_header_clean:
 		../inc/EthHeader.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/ExplorerWidget.h -o ../generated/moc/moc_ExplorerWidget.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/ExplorerWidget.h -o ../generated/moc/moc_ExplorerWidget.cpp
 
 ../generated/moc/moc_InspectorWidget.cpp: widgets/InspectorWidget.h \
 		widgets/Widget.h \
@@ -1202,7 +1174,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/InspectorWidget.h -o ../generated/moc/moc_InspectorWidget.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/InspectorWidget.h -o ../generated/moc/moc_InspectorWidget.cpp
 
 ../generated/moc/moc_MenuBar.cpp: widgets/MenuBar.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMenuBar \
@@ -1223,7 +1195,7 @@ compiler_moc_header_clean:
 		../inc/Enum.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/MenuBar.h -o ../generated/moc/moc_MenuBar.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/MenuBar.h -o ../generated/moc/moc_MenuBar.cpp
 
 ../generated/moc/moc_PacketEditor.cpp: widgets/PacketEditor.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
@@ -1263,7 +1235,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers/qdom.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/PacketEditor.h -o ../generated/moc/moc_PacketEditor.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/PacketEditor.h -o ../generated/moc/moc_PacketEditor.cpp
 
 ../generated/moc/moc_SettingsWidget.cpp: widgets/SettingsWidget.h \
 		widgets/Widget.h \
@@ -1288,14 +1260,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1305,7 +1270,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/SettingsWidget.h -o ../generated/moc/moc_SettingsWidget.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/SettingsWidget.h -o ../generated/moc/moc_SettingsWidget.cpp
 
 ../generated/moc/moc_SnackBar.cpp: widgets/SnackBar.h \
 		widgets/Widget.h \
@@ -1321,7 +1286,7 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/SnackBar.h -o ../generated/moc/moc_SnackBar.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/SnackBar.h -o ../generated/moc/moc_SnackBar.cpp
 
 ../generated/moc/moc_SplashScreen.cpp: screens/SplashScreen.h \
 		widgets/Widget.h \
@@ -1335,14 +1300,14 @@ compiler_moc_header_clean:
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib screens/SplashScreen.h -o ../generated/moc/moc_SplashScreen.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib screens/SplashScreen.h -o ../generated/moc/moc_SplashScreen.cpp
 
 ../generated/moc/moc_Widget.cpp: widgets/Widget.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
 		../generated/moc/moc_predefs.h \
 		/Users/prinz/Qt/5.13.0/clang_64/bin/moc
-	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/win32:INCLUDEPATH -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/+= -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_win/pcap -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/Widget.h -o ../generated/moc/moc_Widget.cpp
+	/Users/prinz/Qt/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/prinz/Workspace/qt/Examples/packet-analyser/generated/moc/moc_predefs.h -I/Users/prinz/Qt/5.13.0/clang_64/mkspecs/macx-clang -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui -I/Users/prinz/Workspace/qt/Examples/packet-analyser/inc -I/Users/prinz/Workspace/qt/Examples/packet-analyser/types -I/Users/prinz/Workspace/qt/Examples/packet-analyser/engine -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/widgets -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/screens -I/Users/prinz/Workspace/qt/Examples/packet-analyser/ui/dialogs -I/Users/prinz/Workspace/qt/Examples/packet-analyser/pcap/pcap_mac -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtXml.framework/Headers -I/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/prinz/Qt/5.13.0/clang_64/lib widgets/Widget.h -o ../generated/moc/moc_Widget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1377,14 +1342,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1491,14 +1449,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1544,14 +1495,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1595,14 +1539,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1633,14 +1570,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1669,14 +1599,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1714,14 +1637,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1774,14 +1690,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -1868,14 +1777,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		../engine/Logger.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
@@ -1944,14 +1846,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -2004,14 +1899,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -2065,14 +1953,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -2127,14 +2008,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -2170,14 +2044,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
@@ -2215,14 +2082,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
 		../inc/EthHeader.h \
@@ -2252,14 +2112,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QMultiMap \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../pcap/pcap_win/pcap.h \
-		../pcap/pcap_win/pcap/pcap.h \
-		../pcap/pcap_win/pcap/funcattrs.h \
-		../pcap/pcap_win/pcap/compiler-tests.h \
-		../pcap/pcap_win/pcap/pcap-inttypes.h \
-		../pcap/pcap_win/pcap/socket.h \
-		../pcap/pcap_win/pcap/bpf.h \
-		../pcap/pcap_win/pcap/dlt.h \
+		../pcap/pcap_mac/pcap.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/Users/prinz/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \

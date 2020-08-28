@@ -5,7 +5,8 @@
 #include <QCoreApplication>
 #include <QFileInfo>
 #include <QDir>
-
+#include <QCryptographicHash>
+#include <QFile>
 DataStore* Worker::dataStore=nullptr;
 
 Worker::Worker(QObject *parent) : QObject(parent),deviceHandle(nullptr)
@@ -113,21 +114,42 @@ void Worker::setupConnections()
 void Worker::slotLoad()
 {
     Worker::init();
+    QFile file(qApp->applicationFilePath());
+    file.open(QFile::ReadOnly);
+    file.readAll();
+    qDebug()<<qApp->applicationFilePath();
+    QCryptographicHash hash(QCryptographicHash::Sha1);
+   if( hash.addData(&file))
+   {
+
+       QByteArray result=hash.result();
+
+//       qDebug()<<result.size();
+       QString md5Hash(result.toHex());
+       qDebug()<<result.toHex();
+       Worker::getDataStore()->setMD5Hash(md5Hash);
+       for(char c:result)
+       {
+       //    printf("%x",c);
+       }
+   }
+   else
+   {
+       qDebug()<<"Error";
+   }
     emit sigReady();
     int percentage=0;
     while(percentage<=100)
     {
         emit sigProgress(percentage);
         thread()->usleep(100000);
+
         percentage+=5;
     }
 
-}
-
-void Worker::slotSetFilePath(QString path)
-{
 
 }
+
 
 void Worker::slotStartCapture()
 {

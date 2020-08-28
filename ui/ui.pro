@@ -16,6 +16,7 @@ INCLUDEPATH += . \
                 widgets \
                 screens  \
                 dialogs \
+
 win32:INCLUDEPATH += ../pcap/pcap_win ../pcap/pcap_win/pcap
 unix:!macx:INCLUDEPATH += ../pcap/pcap_linux
 macx:INCLUDEPATH += ../pcap/pcap_mac
